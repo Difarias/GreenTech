@@ -1,6 +1,6 @@
 const conexao = require("../infraestutura/conexao");
 
-class CategoriaModel{
+class CategoriaModelo{
     listar(){
        const sql = "SELECT * FROM TB_CATEGORIAS";
 
@@ -64,4 +64,4 @@ class CategoriaModel{
     }  
 }
 
-module.exports = new CategoriaModel();
+module.exports = new CategoriaModelo();
