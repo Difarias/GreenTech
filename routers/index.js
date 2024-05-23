@@ -1,4 +1,8 @@
-const routerCategoria = require("./categoriaRoutes");
+const rotasCategoria = require("./categoriaRotas");
+const rotasEndereco  = require("./enderecoRotas");
+const rotasCliente   = require("./clienteRotas");
+const rotasProduto   = require("./produtoRotas");
+const rotasPedido    = require("./pedidoRotas");
 
 module.exports = (app, express) => {
     app.use(express.json());
@@ -8,6 +12,10 @@ module.exports = (app, express) => {
         res.render('index', { title: "Página Inicial" });
     });
     
-    app.use(routerCategoria);
+    app.use(rotasCategoria);
+    app.use(rotasEndereco);
+    app.use(rotasCliente);
+    app.use(rotasProduto);
+    app.use(rotasPedido);
 };
 
