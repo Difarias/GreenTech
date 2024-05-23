@@ -18,9 +18,9 @@ class Tabelas {
             id_cliente INT AUTO_INCREMENT PRIMARY KEY,
             nome_cliente VARCHAR(100) NOT NULL,
             email_cliente VARCHAR(100) NOT NULL,
-            senha_cliente VARCHAR(20) NOT NULL,
-            telefone_cliente INTEGER NOT NULL,
-            cpf_cliente INTEGER NOT NULL,
+            senha_cliente VARCHAR(30) NOT NULL,
+            telefone_cliente VARCHAR(15) NOT NULL,
+            cpf_cliente VARCHAR(11) NOT NULL,
             dataNascimento_cliente DATE NOT NULL,
             dataCadastro_cliente DATE NOT NULL
         );
