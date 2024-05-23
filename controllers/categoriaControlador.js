@@ -1,6 +1,6 @@
 const modeloCategoria = require("../models/categoriaModelo");
 
-class CategoriaController{
+class CategoriaControlador{
     buscar(){
         return modeloCategoria.listar();
     }
@@ -18,4 +18,4 @@ class CategoriaController{
     }
 }
 
-module.exports = new CategoriaController();
+module.exports = new CategoriaControlador();
