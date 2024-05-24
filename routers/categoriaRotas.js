@@ -1,6 +1,6 @@
 const { Router }             = require("express");
 const router                 = Router();
-const controladorCategoria = require("../controllers/categoriaController");
+const controladorCategoria = require("../controllers/categoriaControlador");
 
 router.get("/categorias", (req, res) => {
     const listaCategorias = controladorCategoria.buscar();
