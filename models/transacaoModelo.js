@@ -32,7 +32,7 @@ class TransacaoModelo{
     }  
 
     atualizar(transacaoAtualizada, id_transacao){
-        const sql = "UPDATE TB_TRANSACAO SET ? WHERE id_produto = ?";
+        const sql = "UPDATE TB_TRANSACAO SET ? WHERE id_transacao = ?";
         const sqlFormatado = conexao.format(sql, [transacaoAtualizada, id_transacao]);
         
         return new Promise((resolve, reject)=>{

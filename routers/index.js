@@ -5,7 +5,7 @@ const rotasProduto       = require("./produtoRotas");
 const rotasPedido        = require("./pedidoRotas");
 const rotasTipoTransacao = require("./tipoTransacaoRotas");
 const rotasTransacao     = require("./transacaoRotas");
-//const rotasProdutoPedido = require("./produtoPedidoRotas");
+const rotasProdutoPedido = require("./produtoPedidoRotas");
 
 module.exports = (app, express) => {
     app.use(express.json());
@@ -22,7 +22,7 @@ module.exports = (app, express) => {
     app.use(rotasPedido);
     app.use(rotasTipoTransacao);
     app.use(rotasTransacao);
-    //app.use(rotasProdutoPedido);
+    app.use(rotasProdutoPedido);
     
 };
 
