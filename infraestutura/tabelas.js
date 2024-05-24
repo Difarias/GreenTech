@@ -122,7 +122,7 @@ class Tabelas {
         const sql = `
         CREATE TABLE IF NOT EXISTS TB_TIPOTRANSACAO (
             id_tipotransacao INT AUTO_INCREMENT PRIMARY KEY,
-            nome_tipotransaçao VARCHAR(20) NOT NULL
+            nome_tipotransacao VARCHAR(20) NOT NULL
         );
         `;
         this.conexao.query(sql, (error) => {
@@ -140,7 +140,7 @@ class Tabelas {
             id_transacao INT AUTO_INCREMENT PRIMARY KEY,
             data_transacao DATE NOT NULL,
             valor_transacao FLOAT NOT NULL,
-            metodoPagamento_transacao VARCHAR(15) NOT NULL,
+            metodoPagamento_transacao VARCHAR(50) NOT NULL,
             id_tipotransacao_TB_TIPOTRANSACAO INTEGER,
             id_pedido_TB_PEDIDOS INTEGER,
             FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao),
