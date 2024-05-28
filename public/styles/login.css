@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('../images/fundo.jpeg');
+    background-size: cover;
+    position: relative; 
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/fundo.jpeg');
+    background-size: cover;
+    filter: blur(4px); 
+    z-index: -1; 
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    position: relative; 
+    z-index: 1; 
+}
+
+.logo-container {
+    position: absolute;
+    top: -65px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hexagon {
+    width: 95px; 
+    height: 110px; 
+    background-color: #098809; 
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-image: url('../images/logo.jpeg'); 
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: space; 
+}
+
+h1 {
+    color: #098809;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+input {
+    width: calc(100% - 40px);
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+.btn-access {
+    background-color: white;
+    border: 2px solid #098809;
+    color: #098809; 
+    padding: 10px 0; 
+    border-radius: 20px; 
+    font-size: 14px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 93%; 
+    margin-bottom: 10px;
+}
+
+.btn-access:hover {
+    background-color: #098809; 
+    color: white;
+}
+
+p {
+    color: #000000;
+    font-size: 14px;
+    margin-bottom: 10px; 
+}
+
+.register-link {
+    color: #f0f0f0;
+    padding: 2px 1px; 
+    border-radius: 3px;
+    text-decoration: none; 
+    color: #098809; 
+    font-weight: 800;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}

@@ -12,7 +12,7 @@ module.exports = (app, express) => {
     app.use(express.urlencoded({extended: true}));
 
     app.get('/', (req, res) => {
-        res.render('index', { title: "Página Inicial" });
+        res.render('../views/login', { title: "Página Inicial" });
     });
     
     app.use(rotasCategoria);
