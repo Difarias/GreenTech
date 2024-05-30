@@ -1,0 +1,154 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 420px;
+    border-radius: 12px;
+    height: 370px; /* Altura fixa para evitar mudanças */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-slice {
+    display: none;
+  }
+  
+  .form-slice.active {
+    display: block;
+  }
+  
+  .form-slice h2 {
+    margin-top: 0;
+    color: #4EC76C;
+    text-align: center;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .input-group i {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+  }
+  
+  .input-group input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    padding-left: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .form-slice button {
+    background-color: white;
+    border: 2px solid #4EC76C;
+    color: #4EC76C;
+    padding: 10px 0;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 20%;
+    margin-top: 10px;
+    align-self: center;
+  }
+  
+  .form-slice button:hover {
+    background-color: #4EC76C;
+    color: white;
+  }
+  
+  /* Estilos do header */
+  header {
+    background-color: #4EC76C;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+  }
+  
+  .logo img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .logo span {
+    font-weight: bold;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .header-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-icons a {
+    color: white;
+    text-decoration: none;
+    margin-right: 40px;
+  }
+  
+  .header-icons img {
+    height: 30px;
+  }
+  
+  /* Estilos do footer */
+  footer {
+    background-color: #4EC76C;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  

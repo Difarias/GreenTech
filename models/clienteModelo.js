@@ -68,7 +68,6 @@ class ClienteModelo {
 
     verificarUsuario(email, senha) {
         const sql = "SELECT * FROM TB_CLIENTES WHERE email_cliente = ?";
-        console.log(email, senha);
         
         return new Promise((resolve, reject) => {
             conexao.query(sql, [email], (error, results) => {
@@ -81,16 +80,32 @@ class ClienteModelo {
                 if (results && results.length > 0) {
                     const usuario = results[0];
                      
-                     if (usuario.senha_cliente === senha) {
+                    if (usuario.senha_cliente === senha) {
                          resolve(usuario);
-                     } else {
+                    } else {
                          resolve(null);
-                     }
+                    }
+
                     resolve(usuario);
                 } else {
                     console.log("Nenhum usuário encontrado com o email: " + email);
                     resolve(null);
                 }
+            });
+        });
+    }
+
+    obterUltimoIDCliente(){
+        const sql = "SELECT MAX(id_cliente) FROM TB_CLIENTES";
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, (error, resposta) => {
+                if (error) {
+                    console.error("Erro ao consultar último identificador do cliente");
+                    reject(error);
+                    return;
+                }
+                console.log("Sucesso ao consultar cliente");
+                resolve(resposta);
             });
         });
     }

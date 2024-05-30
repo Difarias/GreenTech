@@ -10,13 +10,16 @@ router.get("/", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/", (req, res) => {
+router.post("/cadastro", async (req, res) => {
     const novoCliente = req.body;
-    const cliente = controladorCliente.criar(novoCliente);
 
-    cliente
-    .then(clienteCriado => res.status(200).json(clienteCriado))
-    .catch(error => res.status(400).json(error.message));
+    try {
+        const clienteCriado = await controladorCliente.criar(novoCliente);
+        res.status(200).json(clienteCriado);
+    } catch (error) {
+        console.error("Erro ao cadastrar cliente:", error);
+        res.status(500).json({ message: error.message });
+    }
 });
 
 router.put("/:id", (req, res) => {

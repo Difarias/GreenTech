@@ -11,14 +11,16 @@ module.exports = (app, express) => {
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));
 
-    // Rota para a página principal do eccomerce
     app.get('/', (req, res) => {
         res.render('principal', { title: "Página Inicial" });
     });
     
-      // Rota para a página de login
-      app.get('/login', (req, res) => {
+    app.get('/login', (req, res) => {
         res.render('login', { title: "Login" });
+    });
+
+    app.get('/cadastro', (req, res) => {
+        res.render('cadastro', { title: "Cadastro" });
     });
 
     app.use('/categorias', rotasCategoria);

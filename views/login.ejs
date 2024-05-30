@@ -58,7 +58,7 @@
                 })
                 .then(data => {
                     console.log('Login realizado com sucesso', data);
-                    window.location.href = '/'; // Redireciona para a página inicial após o login
+                    window.location.href = '/';
                 })
                 .catch(error => {
                     console.error('Erro ao fazer login', error);
@@ -68,7 +68,7 @@
             });
 
             linkCadastro.addEventListener('click', () =>{
-                window.location.href = 'https://chatgpt.com/c/a4cb6915-2821-4ae6-8498-a1e5a38d4e63'
+                window.location.href = '/cadastro'
             })
         });
     </script>
