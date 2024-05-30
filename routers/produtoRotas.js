@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorProduto = require("../controllers/produtoControlador");
 
-router.get("/produtos", (req, res) => {
+router.get("/", (req, res) => {
     const listaProdutos = controladorProduto.buscar();
     
     listaProdutos
@@ -10,7 +10,7 @@ router.get("/produtos", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/produtos", (req, res) => {
+router.post("/", (req, res) => {
     const novoProduto = req.body;
     const produto = controladorProduto.criar(novoProduto);
 
@@ -19,7 +19,7 @@ router.post("/produtos", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/produto/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const produtoAtualizado = req.body;
     const produto = controladorProduto.alterar(produtoAtualizado, id);
@@ -29,7 +29,7 @@ router.put("/produto/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/produto/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const produto = controladorProduto.deletar(id);
 

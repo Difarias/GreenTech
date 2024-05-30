@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorTransacoes = require("../controllers/transacaoControlador");
 
-router.get("/transacoes", (req, res) => {
+router.get("/", (req, res) => {
     const listaTransacoes = controladorTransacoes.buscar();
     
     listaTransacoes
@@ -10,7 +10,7 @@ router.get("/transacoes", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/transacoes", (req, res) => {
+router.post("/", (req, res) => {
     const novaTransacao = req.body;
     const transacao = controladorTransacoes.criar(novaTransacao);
 
@@ -19,7 +19,7 @@ router.post("/transacoes", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/transacao/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const transacaoAtualizada = req.body;
     const transacao = controladorTransacoes.alterar(transacaoAtualizada, id);
@@ -29,7 +29,7 @@ router.put("/transacao/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/transacao/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const transacao = controladorTransacoes.deletar(id);
 

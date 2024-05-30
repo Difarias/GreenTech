@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorTipoTransacao = require("../controllers/tipoTransacaoControlador");
 
-router.get("/tipoTransacoes", (req, res) => {
+router.get("/", (req, res) => {
     const listaTiposTransacoes = controladorTipoTransacao.buscar();
     
     listaTiposTransacoes
@@ -10,7 +10,7 @@ router.get("/tipoTransacoes", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/tipoTransacoes", (req, res) => {
+router.post("/", (req, res) => {
     const novaTransacao = req.body;
     const tipoTransacao = controladorTipoTransacao.criar(novaTransacao);
 
@@ -19,7 +19,7 @@ router.post("/tipoTransacoes", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/tipoTransacao/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const tipoTransacaoAtualizada = req.body;
     const tipoTransacao = controladorTipoTransacao.alterar(tipoTransacaoAtualizada, id);
@@ -29,7 +29,7 @@ router.put("/tipoTransacao/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/tipoTransacao/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const tipoTransacao = controladorTipoTransacao.deletar(id);
 

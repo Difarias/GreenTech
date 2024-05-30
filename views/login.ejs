@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="login-container">
         <div class="logo-container">
-            <!-- Logo em forma hexagonal -->
             <div class="hexagon"></div>
         </div>
         <h1>Entrar</h1>
-        <form action="#" method="post">
+        <form id="loginForm" method="post">
             <div class="input-container">
                 <i class="fas fa-user"></i>
                 <input type="email" id="email" name="email" placeholder="*Email" required>
@@ -23,9 +22,55 @@
                 <i class="fas fa-key"></i>
                 <input type="password" id="senha" name="senha" placeholder="*Senha" required>
             </div>
-            <button type="submit" class="btn-access">Acessar</button>
-            <p>Não tem uma conta? <a href="#" class="register-link">Registre-se</a></p>
+            <button type="button" id="btnLogin" class="btn-access">Acessar</button>
+            <p>Não tem uma conta? <a href="#" id="linkCadastro" class="register-link">Registre-se</a></p>
         </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnLogin = document.getElementById('btnLogin');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+            const linkCadastro = document.getElementById('linkCadastro');
+
+            btnLogin.addEventListener('click', () => {
+                const email = emailInput.value;
+                const senha = senhaInput.value;
+
+                const dados = {
+                    email: email,
+                    senha: senha
+                };
+
+                fetch('/clientes/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao tentar fazer login');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Login realizado com sucesso', data);
+                    window.location.href = '/'; // Redireciona para a página inicial após o login
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer login', error);
+                    emailInput.classList.add('input-error');
+                    senhaInput.classList.add('input-error');
+                });
+            });
+
+            linkCadastro.addEventListener('click', () =>{
+                window.location.href = 'https://chatgpt.com/c/a4cb6915-2821-4ae6-8498-a1e5a38d4e63'
+            })
+        });
+    </script>
 </body>
 </html>

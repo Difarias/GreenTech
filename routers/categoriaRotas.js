@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorCategoria = require("../controllers/categoriaControlador");
 
-router.get("/categorias", (req, res) => {
+router.get("/", (req, res) => {
     const listaCategorias = controladorCategoria.buscar();
     
     listaCategorias
@@ -10,7 +10,7 @@ router.get("/categorias", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/categorias", (req, res) => {
+router.post("/", (req, res) => {
     const novaCategoria = req.body;
     const categoria = controladorCategoria.criar(novaCategoria);
 
@@ -19,7 +19,7 @@ router.post("/categorias", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/categoria/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const categoriaAtualizada = req.body;
     const categoria = controladorCategoria.alterar(categoriaAtualizada, id);
@@ -29,7 +29,7 @@ router.put("/categoria/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/categoria/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const categoria = controladorCategoria.deletar(id);
 

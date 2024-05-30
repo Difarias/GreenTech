@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorPedido = require("../controllers/pedidoControlador");
 
-router.get("/pedidos", (req, res) => {
+router.get("/", (req, res) => {
     const listaPedidos = controladorPedido.buscar();
     
     listaPedidos
@@ -10,7 +10,7 @@ router.get("/pedidos", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/pedidos", (req, res) => {
+router.post("/", (req, res) => {
     const novoPedido = req.body;
     const pedido = controladorPedido.criar(novoPedido);
 
@@ -19,7 +19,7 @@ router.post("/pedidos", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/pedido/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const pedidoAtualizado = req.body;
     const pedido = controladorPedido.alterar(pedidoAtualizado, id);
@@ -29,7 +29,7 @@ router.put("/pedido/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/pedido/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const pedido = controladorPedido.deletar(id);
 

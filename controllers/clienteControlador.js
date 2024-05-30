@@ -16,6 +16,10 @@ class ClienteControlador{
     deletar(id_cliente){
         return modeloCliente.deletar(id_cliente);
     }
+
+    verificarCliente(email, senha) {
+        return modeloCliente.verificarUsuario(email, senha);
+    }  
 }
 
 module.exports = new ClienteControlador();
