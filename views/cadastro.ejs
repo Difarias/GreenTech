@@ -3,56 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%= title %></title>
+<title>Formulário em Slices com Ícones</title>
 <link rel="stylesheet" href="../styles/cadastro.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="./images/logo.jpeg" alt="GreenTech Logo" height="50">
-      <span>GreenTech</span>
+    <div class="header">
+        <div class="logo">
+            <div class="logoimg">
+                <a href="/">
+                    <img src="./images/logo.jpeg" alt="Logo do E-commerce">
+                </a>
+            </div>
+            <div class="logotext">
+                <h1>GreenTech</h1>
+            </div>
+        </div>
+        <div class="searcher">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar...">
+                <img class="search-icon" src="./images/search1.svg" alt="Ícone de Pesquisa">
+            </div>
+        </div>
+        <div class="cart">
+            <a href="/pagamento" rel="noopener noreferrer">
+                <img src="./images/cart.svg">
+            </a>
+        </div>
+        <div class="button">
+          <a href="/login" class="login-button">
+              <div class="loginimg">
+                  <img src="./images/login-icon.svg" alt="icon login">
+                  <span>Login</span>
+              </div>
+          </a>
+        </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#">Eletrônicos</a></li>
-        <li><a href="#">Gadgets</a></li>
-        <li><a href="#">Casa</a></li>
-        <li><a href="#">Rural</a></li>
-      </ul>
+    
+    <nav class="category">
+        <ul class="nav">
+            <li><a href="#">Eletrônicos</a></li>
+            <li><a href="#">Gadgets</a></li>
+            <li><a href="#">Utensílios</a></li>
+            <li><a href="#">Equipamentos Rurais</a></li>
+            <li><a href="#">Componentes e Peças</a></li>
+        </ul>
     </nav>
-    <div class="header-icons">
-      <a href="#"><i class="fas fa-shopping-cart"></i></a>
-      <a href="#"><i class="fas fa-user"></i></a>
-    </div>
   </header>
 
   <div class="form-container">
-    <form id="form">
+    <form id="form" onsubmit="cadastroUsuario(event)">
       <!-- Slice 1: Dados Pessoais -->
       <div class="form-slice active" id="slice1">
         <h2>Dados Pessoais</h2>
         <div class="input-group">
           <i class="fas fa-user"></i>
-          <input type="text" id="nome_cadastro" name="nome" placeholder="Nome" required>
+          <input type="text" name="nome" placeholder="Nome" required>
         </div>
         <div class="input-group">
           <i class="fas fa-id-card"></i>
-          <input type="text" id="cpf_cadastro" name="cpf" placeholder="CPF" required>
+          <input type="text" name="cpf" placeholder="CPF" id="cpf_cadastro" required>
         </div>
         <div class="input-group">
           <i class="fas fa-envelope"></i>
-          <input type="email" id="email_cadastro" name="email" placeholder="E-mail" required>
+          <input type="email" name="email" placeholder="E-mail" required>
         </div>
         <div class="input-group">
           <i class="fas fa-phone-alt"></i>
-          <input type="tel" id="telefone_cadastro" name="telefone" placeholder="Telefone" required>
+          <input type="tel" name="telefone" placeholder="Telefone" required>
         </div>
         <div class="input-group">
           <i class="fas fa-calendar-alt"></i>
-          <input type="date" id="dtaNascimento_cadastro" name="dataNascimento" placeholder="Data de Nascimento" required>
+          <input type="date" name="dataNascimento" placeholder="Data de Nascimento" required>
         </div>
-        <button type="button" onclick="nextSlice()">Próximo</button>
+        <button type="button" onclick="validaCPF()">Próximo</button>
       </div>
 
       <!-- Slice 2: Endereço -->
@@ -60,27 +85,27 @@
         <h2>Endereço</h2>
         <div class="input-group">
           <i class="fas fa-map-marker-alt"></i>
-          <input type="text" id="cep_cadastro" name="cep" placeholder="CEP" required>
+          <input type="text" name="cep" placeholder="CEP" id="cep_cadastro" required onblur="validaCEP()">
         </div>
         <div class="input-group">
           <i class="fas fa-road"></i>
-          <input type="text" id="rua_cadastro" name="rua" placeholder="Rua" required>
+          <input type="text" name="rua" placeholder="Rua" id="logradouro_cadastro" required>
         </div>
         <div class="input-group">
           <i class="fas fa-building"></i>
-          <input type="text" id="bairro_cadastro" name="bairro" placeholder="Bairro" required>
+          <input type="text" name="bairro" placeholder="Bairro" id="bairro_cadastro" required>
         </div>
         <div class="input-group">
           <i class="fas fa-home"></i>
-          <input type="text" id="logradouro_cadastro" name="logradouro" placeholder="Logradouro">
+          <input type="text" name="logradouro" placeholder="Logradouro" id="numero_cadastro">
         </div>
         <div class="input-group">
           <i class="fas fa-city"></i>
-          <input type="text" id="cidade_cadastro" name="cidade" placeholder="Cidade" required>
+          <input type="text" name="cidade" placeholder="Cidade" id="cidade_cadastro" required>
         </div>
         <div class="input-group">
           <i class="fas fa-flag"></i>
-          <input type="text" id="estado_cadastro" name="estado" placeholder="Estado" required>
+          <input type="text" name="estado" placeholder="Estado" id="estado_cadastro" required>
         </div>
         <button type="button" onclick="prevSlice()">Voltar</button>
         <button type="button" onclick="nextSlice()">Próximo</button>
@@ -91,27 +116,29 @@
         <h2>Senha</h2>
         <div class="input-group">
           <i class="fas fa-lock"></i>
-          <input type="password" id="senha_cadastro" name="senha" placeholder="Senha" required>
+          <input type="password" name="senha" placeholder="Senha" id="senha_cadastro" required>
         </div>
         <div class="input-group">
           <i class="fas fa-lock"></i>
           <input type="password" name="confirmarSenha" placeholder="Confirmar Senha" required>
         </div>
         <button type="button" onclick="prevSlice()">Voltar</button>
-        <button type="submit" onclick="cadastroUsuario()">Enviar</button>
+        <button type="submit">Enviar</button>
       </div>
     </form>
   </div>
 
-  <footer>
-    <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
+  <footer class="container-footer">
+    <div class="footer-box">
+        <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
+    </div>
   </footer>
 
   <script>
     function nextSlice() {
-      var currentSlice = document.querySelector('.form-slice.active');
-      var inputs = currentSlice.querySelectorAll('input[required]');
-      var valid = true;
+      let currentSlice = document.querySelector('.form-slice.active');
+      let inputs = currentSlice.querySelectorAll('input[required]');
+      let valid = true;
 
       inputs.forEach(function(input) {
         if (!input.value) {
@@ -124,7 +151,8 @@
         return;
       }
 
-      var nextSlice = currentSlice.nextElementSibling;
+      let nextSlice = currentSlice.nextElementSibling;
+
       if (nextSlice !== null) {
         currentSlice.classList.remove('active');
         nextSlice.classList.add('active');
@@ -132,40 +160,112 @@
     }
 
     function prevSlice() {
-      var currentSlice = document.querySelector('.form-slice.active');
-      var prevSlice = currentSlice.previousElementSibling;
+      let currentSlice = document.querySelector('.form-slice.active');
+      let prevSlice = currentSlice.previousElementSibling;
+
       if (prevSlice !== null) {
         currentSlice.classList.remove('active');
         prevSlice.classList.add('active');
       }
     }
-  
-    function cadastroUsuario() {
+
+    function validaCPF() {
+      let cpf = document.getElementById('cpf_cadastro').value.replace(/[^\d]+/g,''); // Remove caracteres não numéricos
+      
+      if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+        alert('CPF inválido.');
+        return;
+      }
+
+      let soma = 0;
+
+      for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+      }
+
+      let resto = 11 - (soma % 11);
+      if (resto === 10 || resto === 11) resto = 0;
+      
+      if (resto !== parseInt(cpf.charAt(9))) {
+        alert('CPF inválido.');
+        return;
+      }
+
+      soma = 0;
+      for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+      }
+
+      resto = 11 - (soma % 11);
+      if (resto === 10 || resto === 11) resto = 0;
+      
+      if (resto !== parseInt(cpf.charAt(10))) {
+        alert('CPF inválido.');
+        return;
+      }
+
+      nextSlice();
+    }
+
+    function validaCEP() {
+      let cep = document.getElementById('cep_cadastro').value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+      if (cep.length !== 8) {
+        alert('CEP inválido.');
+        return;
+      }
+
+      fetch('https://viacep.com.br/ws/' + cep + '/json/')
+        .then(response => response.json())
+        .then(data => {
+          if (data.erro) {
+            alert('CEP não encontrado.');
+            return;
+          }
+          document.getElementById('logradouro_cadastro').value = data.logradouro;
+          document.getElementById('bairro_cadastro').value = data.bairro;
+          document.getElementById('cidade_cadastro').value = data.localidade;
+          document.getElementById('estado_cadastro').value = data.uf;
+        })
+        .catch(error => console.error('Erro ao buscar CEP:', error));
+    }
+
+    function verificaSenhaProtegida(senha) {
+      const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}$/;
+      return regex.test(senha);
+    }
+
+    function cadastroUsuario(event) {
       event.preventDefault();
 
       const dados = {
-        nome: document.getElementById('nome_cadastro').value,
-        cpf: document.getElementById('cpf_cadastro').value,
-        email: document.getElementById('email_cadastro').value,
-        telefone: document.getElementById('telefone_cadastro').value,
-        dataNascimento: document.getElementById('dtaNascimento_cadastro').value,
-        endereco: {
-          cep: document.getElementById('cep_cadastro').value,
-          rua: document.getElementById('rua_cadastro').value,
-          bairro: document.getElementById('bairro_cadastro').value,
-          logradouro: document.getElementById('logradouro_cadastro').value,
-          cidade: document.getElementById('cidade_cadastro').value,
-          estado: document.getElementById('estado_cadastro').value
-        },
-        senha: document.getElementById('senha_cadastro').value,
-        confirmarSenha: document.querySelector('input[name="confirmarSenha"]').value
-      };
+          nome: document.querySelector('input[name="nome"]').value,
+          cpf: document.querySelector('input[name="cpf"]').value,
+          email: document.querySelector('input[name="email"]').value,
+          telefone: document.querySelector('input[name="telefone"]').value,
+          dataNascimento: document.querySelector('input[name="dataNascimento"]').value,
+          endereco: {
+            cep: document.querySelector('input[name="cep"]').value,
+            logradouro: document.querySelector('input[name="logradouro"]').value,
+            bairro: document.querySelector('input[name="bairro"]').value,
+            numero: document.querySelector('input[name="logradouro"]').value,
+            cidade: document.querySelector('input[name="cidade"]').value,
+            estado: document.querySelector('input[name="estado"]').value
+            },
+          senha: document.querySelector('input[name="senha"]').value,
+          confirmarSenha: document.querySelector('input[name="confirmarSenha"]').value
+          };
 
       if (dados.senha !== dados.confirmarSenha) {
         alert('As senhas não coincidem.');
         return;
       }
-      console.log(dados)
+
+      if (!verificaSenhaProtegida(dados.senha)) {
+        alert('A senha deve conter pelo menos 8 caracteres, uma letra maiúscula, um caractere especial e números.');
+        return;
+      }
+
       fetch('/clientes/cadastro', {
         method: 'POST',
         headers: {
@@ -173,21 +273,24 @@
         },
         body: JSON.stringify(dados)
       })
+
       .then(response => {
         if (!response.ok) {
           throw new Error('Erro ao tentar cadastrar');
         }
         return response.json();
       })
+
       .then(data => {
         alert('Cadastro realizado com sucesso!');
         window.location.href = '/login';
       })
+      
       .catch(error => {
         console.error('Erro ao fazer cadastro', error);
         alert('Erro ao fazer cadastro. Tente novamente mais tarde.');
       });
-      }
+    }
   </script>
 </body>
 </html>

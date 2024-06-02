@@ -25,7 +25,7 @@ class ClienteControlador{
                 estado_endereco: novoCliente.endereco.estado,
                 logradouro_endereco: novoCliente.endereco.logradouro,
                 cep_endereco: novoCliente.endereco.cep,
-                numero_endereco: 1,//novoCliente.endereco.numero,
+                numero_endereco: novoCliente.endereco.numero,
                 id_cliente_TB_CLIENTE: idClienteNovo[0]['MAX(id_cliente)']
             });            
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html  >
 <head>
+  <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
@@ -9,41 +10,49 @@
   <meta name="description" content="">
   <link rel="stylesheet" href="../styles/principal.css">
   <title><%= title %></title>
-
 </head>
 <body> 
     <header>
-        <div class="logo">
-            <div class="logoimg">
-                <a href="./index.html">
-                    <img src="./images/logo.jpeg" alt="Logo do E-commerce">
+        <div class="header">
+            <div class="logo">
+                <div class="logoimg">
+                    <a href="/">
+                        <img src="./images/logo.jpeg" alt="Logo do E-commerce">
+                    </a>
+                </div>
+                <div class="logotext">
+                    <h1>GreenTech</h1>
+                </div>
+            </div>
+            <div class="searcher">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Buscar...">
+                    <img class="search-icon" src="./images/search1.svg" alt="Ícone de Pesquisa">
+                </div>
+            </div>
+            <div class="cart">
+                <a href="pagamento" rel="noopener noreferrer">
+                    <img src="./images/cart.svg">
                 </a>
             </div>
-            <div class="logotext">
-                <h1>GreenTech</h1>
+            <div class="button">
+                <a href="/login" class="login-button">
+                    <div class="loginimg">
+                        <img src="./images/login-icon.svg" alt="icon login">
+                        <span>Login</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        </div>  
         <nav class="category">
-                <ul class="nav">
-                    <li><a href="#">Eletrônicos</a></li>
-                    <li><a href="#">Gadgets</a></li>
-                    <li><a href="#">Utensílios</a></li>
-                    <li><a href="#">Equipamentos Rurais</a></li>
-                    <li><a href="#">Componentes e Peças</a></li>
-                </ul>
+            <ul class="nav">
+                <li><a href="#">Eletrônicos</a></li>
+                <li><a href="#">Gadgets</a></li>
+                <li><a href="#">Utensílios</a></li>
+                <li><a href="#">Equipamentos Rurais</a></li>
+                <li><a href="#">Componentes e Peças</a></li>
+            </ul>
         </nav>
-        <div class="searcher">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar...">
-                <img class="search-icon" src="./images/search.svg" alt="Ícone de Pesquisa">
-            </div>
-        </div>
-        <div class="button">
-            <div class="loginimg">
-                <img src="./images/login-icon.svg" alt="icon login">
-                <button class="login-button">Login</button>
-            </div>
-        </div>
     </header>
 
     <main>
@@ -52,7 +61,7 @@
         </div>
         <div class="cards">
             <h2>Produtos em Destaque</h2>
-            <div class="slider">
+            <div class="slider js-slider">
                 <div class="card">
                     <div class="like"></div>
                     <img class="product" src="/images/lamp-led.jpeg">
@@ -141,63 +150,112 @@
             </div>
         </div>
             
-        <div class="container2"></div>
-    </main>
 
-    <footer class="container-footer">
-        <div>
-            <ul class="nav-footer">
-                <li><a href="#cat1">Sobre</a></li>
-                <li><a href="#cat2">Suporte</a></li>
-                <li><a href="#cat3">Ajuda</a></li>
-                <li><a href="./cadastro.html">Cadastro</a></li>
-                <li><a href="./login.html">Login</a></li>
-            </ul>
-        </div>
-        <div class="line"></div>
-        <div class="devs">
-            <div class="developer">
-                <div class="dev">
-                    <p>Diêgo Faria</p>
-                    <ul>
-                        <li>
-                            <a href="https://twitter.com/joao_silva" target="_blank">
-                                <img src="./images/instagram-svgrepo-com.svg" class="icon-social">
-                            </a>
-                            <a href="https://linkedin.com/in/joao_silva" target="_blank">
-                                <img src="./images/linkedin-svgrepo-com.svg" class="icon-social">
-                            </a>
-                            <a href="https://github.com/joao_silva" target="_blank">
-                                <img src="./images/github-svgrepo-com.svg" class="icon-social">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="vline"></div>
-                <div class="dev">
-                    <p>Isaias Mendes</p>
-                    <ul>
-                        <li>
-                            <a href="https://twitter.com/maria_souza" target="_blank">
-                                <img src="./images/instagram-svgrepo-com.svg" class="icon-social">
-                            </a>
-                            <a href="https://linkedin.com/in/maria_souza" target="_blank">
-                                <img src="./images/linkedin-svgrepo-com.svg" class="icon-social">
-                            </a>
-                            <a href="https://github.com/maria_souza" target="_blank">
-                                <img src="./images/github-svgrepo-com.svg" class="icon-social">
-                            </a>
-                        </li>
-                    </ul>
+
+        <div class="container2">
+            <div class="curiosidade">
+                <img src="/images/ambient.jpg">
+                <div class="icon-green"></div>
+                <div class="curios-tex">
+                    <p id="curios-tex1">A MELHOR QUALIDADE</p>
+                    <p id="curios-tex2">APENAS POR HOJE</p>
+                    <p id="curios-tex2">PARA VOCÊ</p>  
+                    <p id="curios-tex3">SÓ AQUI ></p>
                 </div>
             </div>
         </div>
-        <div class="line"></div>
-        <div class="footer-footer">
-            <p>&copy; 2024 GreenTech</p>
+
+
+
+        <div class="container3">
+            <div class="box">
+                <p>Selecionados para Voce!</p>
+                <div class="slider js-slider">
+                    <div class="card2">
+                        <img class="product" src="/images/lamp-led.jpeg">
+                        <h4 class="prod-name">Lampada Led</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/drone.jpg">
+                        <h4 class="prod-name">Drone</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/placa-solar.jpg">
+                        <h4 class="prod-name">Placa Solar</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/carregador.webp">
+                        <h4 class="prod-name">Carregador Portátil</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="./script.js">
-    </script>
+
+
+        
+        <div class="container4">
+            <div class="box">
+                <p>Veja Tambem!</p>
+                <div class="slider js-slider2">
+                    <div class="card2">
+                        <img class="product" src="/images/lamp-led.jpeg">
+                        <h4 class="prod-name">Lampada Led</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/drone.jpg">
+                        <h4 class="prod-name">Drone</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/placa-solar.jpg">
+                        <h4 class="prod-name">Placa Solar</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                    <div class="card2">
+                        <img class="product" src="/images/carregador.webp">
+                        <h4 class="prod-name">Carregador Portátil</h4>
+                        <div class="price">
+                            <h5>R$ 299.90</h5>
+                            <h5>R$ 299.90</h5>
+                        </div>
+                        <a class="buy" href="#"><img src="/images/cash.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

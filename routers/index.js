@@ -23,6 +23,10 @@ module.exports = (app, express) => {
         res.render('cadastro', { title: "Cadastro" });
     });
 
+    app.get('/pagamento', (req, res) => {
+        res.render('pagamento', { title: "Pagamento" });
+    });
+
     app.use('/categorias', rotasCategoria);
     app.use('/enderecos', rotasEndereco);
     app.use('/clientes', rotasCliente);
