@@ -27,6 +27,10 @@ module.exports = (app, express) => {
         res.render('pagamento', { title: "Pagamento" });
     });
 
+    app.get('/pedidos', (req, res) => {
+        res.render('pedidos', { title: "Pedidos" });
+    });
+
     app.use('/categorias', rotasCategoria);
     app.use('/enderecos', rotasEndereco);
     app.use('/clientes', rotasCliente);
