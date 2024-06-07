@@ -2,8 +2,9 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorPedido = require("../controllers/pedidoControlador");
 
-router.get("/", (req, res) => {
-    const listaPedidos = controladorPedido.buscar();
+router.get("/:idCliente/pedidos", (req, res) => {
+    const idCliente = req.params.idCliente;
+    const listaPedidos = controladorPedido.buscarPorCliente(idCliente);
     
     listaPedidos
     .then((pedidos) => res.status(200).json(pedidos))

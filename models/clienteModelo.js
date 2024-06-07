@@ -109,6 +109,29 @@ class ClienteModelo {
             });
         });
     }
+
+    verificarEmailExistente(email) {
+        const sql = "SELECT * FROM TB_CLIENTES WHERE email_cliente = ?";
+        
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [email], (error, results) => {
+                if (error) {
+                    console.error("Erro ao verificar e-mail existente: " + email, error);
+                    reject(error);
+                    return;
+                }
+
+                if (results && results.length > 0) {
+                    console.log("E-mail já existe na base de dados: " + email);
+                    resolve(true);
+                } else {
+                    console.log("E-mail não encontrado na base de dados: " + email);
+                    resolve(false);
+                }
+            });
+        });
+    }
+
 }
 
 module.exports = new ClienteModelo();

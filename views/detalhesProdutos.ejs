@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="../styles/pagamento.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../styles/detalhesProdutos.css">
+  <title>Detalhes do Produto</title>
 </head>
-<body>
+
+<body> 
     <header>
         <div class="header">
             <div class="logo">
                 <div class="logoimg">
                     <a href="/">
-                        <img src="./images/logo.jpeg" alt="Logo do E-commerce">
+                        <img src="../images/logo.jpeg" alt="Logo do E-commerce">
                     </a>
                 </div>
                 <div class="logotext">
@@ -23,12 +28,12 @@
             <div class="searcher">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="Buscar...">
-                    <img class="search-icon" src="./images/search1.svg" alt="Ícone de Pesquisa">
+                    <img class="search-icon" src="../images/search1.svg" alt="Ícone de Pesquisa">
                 </div>
             </div>
             <div class="cart">
-                <a href="pagamento" rel="noopener noreferrer">
-                    <img src="./images/cart.svg">
+                <a href="/pagamento" rel="noopener noreferrer">
+                    <img src="../images/cart.svg">
                 </a>
             </div>
             <div class="button">
@@ -55,71 +60,57 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
-        <div class="products">
-            <h1>Meus Produtos</h1>
-            <div class="product">
-                <img src="images/bike-eletric.jpg" alt="Bicicleta Elétrica">
-                <div class="product-details">
-                    <h2>Bicicleta Elétrica</h2>
-                    <div class="quantity">
-                        <button class="quantity-button decrease"><i class="fas fa-minus"></i></button>
-                        <p class="quantity-value">1</p>
-                        <button class="quantity-button increase"><i class="fas fa-plus"></i></button>
+
+    <main class="product-main">
+        <div class="product-container">
+            <div class="product-left">
+                <div class="product-name">
+                    <h2>Irrigador</h2>
+                </div>
+                <div class="product-image">
+                    <img src="../images/irrigacao.jpg" alt="Imagem do Produto">
+                </div>
+                <div class="product-description">
+                    <p class="product-date">Data de Cadastro: 01/06/2024</p>
+                    <p class="product-category">Categoria: Gadgets</p>
+                    <p>Descrição breve do produto. <a href="#" id="more-info">Saiba mais</a></p>
+                    <div class="technical-specifications" id="technical-specifications">
+                        <h3>Especificações Técnicas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ullam nam minima similique aperiam dolores possimus tempora numquam modi cupiditate officia veniam suscipit natus, doloremque placeat commodi fugit. Amet, dolores....</p>
                     </div>
                 </div>
-                <div class="price-and-delete">
-                    <a href="#" class="delete"><i class="fas fa-trash"></i></a>
-                    <p class="price">R$ 4,49</p>
-                </div>
             </div>
-            <div class="product">
-                <img src="images/drone.jpg" alt="Drone Elétrico GT-500">
+            <div class="product-right">
                 <div class="product-details">
-                    <h2>Drone Elétrico GT-500</h2>
-                    <div class="quantity">
-                        <button class="quantity-button decrease"><i class="fas fa-minus"></i></button>
-                        <p class="quantity-value">1</p>
-                        <button class="quantity-button increase"><i class="fas fa-plus"></i></button>
+                    <p class="product-price">Preço: R$ 299,99</p>
+                    <div class="product-actions">
+                        <p class="product-number">Quant:</p>
+                        <input type="number" value="1" min="1" class="product-quantity">
+                        <div class="product-button">
+                            <button class="buy-button">Comprar</button>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
                     </div>
                 </div>
-                <div class="price-and-delete">
-                    <a href="#" class="delete"><i class="fas fa-trash"></i></a>
-                    <p class="price">R$ 1,84</p>
-                </div>
-            </div>
-            <div class="subtotal">
-                <p>VALOR TOTAL</p>
-                <p>R$ 6,33</p>
             </div>
         </div>
-        <div class="payment-methods">
-            <h2>Formas de Pagamento</h2>
-            <label>
-                <input type="radio" name="payment" value="pix"> PIX
-            </label>
-            <label>
-                <input type="radio" name="payment" value="credit"> CARTÃO DE CRÉDITO - À VISTA
-                <p>Pague à vista com cartão de crédito</p>
-            </label>
-            <label>
-                <input type="radio" name="payment" value="installments"> CARTÃO DE CRÉDITO - PARCELADO
-                <p>Parcele em até 6x sem juros ou de 7 a 12x com juros</p>
-            </label>
-            <label>
-                <input type="radio" name="payment" value="paypal"> PAYPAL
-                <p>Até 4x sem juros no cartão</p>
-            </label>
-            <button class="finalize-button">Finalizar Pedido</button>
-        </div>
-    </div>
+    </main>
+
     <footer class="container-footer">
         <div class="footer-box">
             <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
         </div>
+        <div class="line"></div>
+        <div class="footer-footer">
+            <p>&copy; 2024 GreenTech</p>
+        </div>
     </footer>
-
     <script>
+        document.getElementById("more-info").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById("technical-specifications").classList.toggle("show");
+        });
+
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
                 const username = localStorage.getItem('username');

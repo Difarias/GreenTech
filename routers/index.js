@@ -1,37 +1,51 @@
-const rotasCategoria     = require("./categoriaRotas");
-const rotasEndereco      = require("./enderecoRotas");
-const rotasCliente       = require("./clienteRotas");
-const rotasProduto       = require("./produtoRotas");
-const rotasPedido        = require("./pedidoRotas");
+const rotasCategoria = require("./categoriaRotas");
+const rotasEndereco = require("./enderecoRotas");
+const rotasCliente = require("./clienteRotas");
+const rotasProduto = require("./produtoRotas");
+const rotasPedido = require("./pedidoRotas");
 const rotasTipoTransacao = require("./tipoTransacaoRotas");
-const rotasTransacao     = require("./transacaoRotas");
+const rotasTransacao = require("./transacaoRotas");
 const rotasProdutoPedido = require("./produtoPedidoRotas");
 
 module.exports = (app, express) => {
     app.use(express.json());
-    app.use(express.urlencoded({extended: true}));
+    app.use(express.urlencoded({ extended: true }));
 
     app.get('/', (req, res) => {
-        res.render('principal', { title: "Página Inicial" });
+        rotasCategoria.renderizarCategorias(req, res, 'principal');
     });
     
     app.get('/login', (req, res) => {
-        res.render('login', { title: "Login" });
+        res.render('login', { title: "login" });
     });
 
     app.get('/cadastro', (req, res) => {
-        res.render('cadastro', { title: "Cadastro" });
+        rotasCategoria.renderizarCategorias(req, res, 'cadastro');
     });
 
     app.get('/pagamento', (req, res) => {
-        res.render('pagamento', { title: "Pagamento" });
+        rotasCategoria.renderizarCategorias(req, res, 'pagamento');
     });
 
     app.get('/pedidos', (req, res) => {
-        res.render('pedidos', { title: "Pedidos" });
+        rotasCategoria.renderizarCategorias(req, res, 'pedidos');
+        
     });
 
-    app.use('/categorias', rotasCategoria);
+    app.get('/produtos', (req, res) => {
+        rotasCategoria.renderizarCategorias(req, res, 'produtos');
+    });
+
+    app.get('/detalhesProdutos', (req, res) => {
+        rotasCategoria.renderizarCategorias(req, res, 'detalhesProdutos');
+    });
+
+    app.get('/detalhesPedidos', (req, res) => {
+        rotasCategoria.renderizarCategorias(req, res, 'detalhesPedidos');
+    });
+
+    // Use os middlewares corretos
+    app.use('/categorias', rotasCategoria.router);
     app.use('/enderecos', rotasEndereco);
     app.use('/clientes', rotasCliente);
     app.use('/produtos', rotasProduto);

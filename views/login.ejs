@@ -58,6 +58,13 @@
                 })
                 .then(data => {
                     console.log('Login realizado com sucesso', data);
+                    localStorage.setItem('id', data.id_cliente);
+                    localStorage.setItem('username', data.nome_cliente);
+                    localStorage.setItem('email', data.email_cliente);
+                    localStorage.setItem('telefone', data.telefone_cliente);
+                    localStorage.setItem('cpf', data.cpf_cliente);
+                    localStorage.setItem('dataNascimento', data.dataNascimento_cliente);
+                    localStorage.setItem('dataCadastro', data.dataCadastro_cliente);
                     window.location.href = '/';
                 })
                 .catch(error => {

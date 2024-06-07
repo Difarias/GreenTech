@@ -40,15 +40,12 @@
           </a>
         </div>
     </div>
-    
     <nav class="category">
-        <ul class="nav">
-            <li><a href="#">Eletrônicos</a></li>
-            <li><a href="#">Gadgets</a></li>
-            <li><a href="#">Utensílios</a></li>
-            <li><a href="#">Equipamentos Rurais</a></li>
-            <li><a href="#">Componentes e Peças</a></li>
-        </ul>
+      <ul class="nav">
+          <% categorias.forEach(categoria => { %>
+              <li><a href="/produtos"><%= categoria.nome_categoria %></a></li>
+          <% }) %>
+      </ul>
     </nav>
   </header>
 
@@ -170,7 +167,7 @@
     }
 
     function validaCPF() {
-      let cpf = document.getElementById('cpf_cadastro').value.replace(/[^\d]+/g,''); // Remove caracteres não numéricos
+      let cpf = document.getElementById('cpf_cadastro').value.replace(/[^\d]+/g,''); 
       
       if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
         alert('CPF inválido.');
@@ -287,9 +284,14 @@
       })
       
       .catch(error => {
-        console.error('Erro ao fazer cadastro', error);
-        alert('Erro ao fazer cadastro. Tente novamente mais tarde.');
-      });
+      console.error('Erro ao fazer cadastro', error);
+        if (error && error.status === 409) {
+            alert('Este e-mail já está em uso. Por favor, use um e-mail diferente.');
+        } else {
+            alert('Erro ao fazer cadastro.Tente novamente mais tarde.');
+        }
+    });
+
     }
   </script>
 </body>
