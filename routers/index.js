@@ -12,7 +12,7 @@ module.exports = (app, express) => {
     app.use(express.urlencoded({ extended: true }));
 
     app.get('/', (req, res) => {
-        rotasCategoria.renderizarCategorias(req, res, 'principal');
+        rotasCategoria.renderizarCategoriasEProdutos(req, res, 'principal');
     });
     
     app.get('/login', (req, res) => {

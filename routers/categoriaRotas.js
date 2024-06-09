@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const controladorCategoria = require("../controllers/categoriaControlador");
+const controladorProduto = require("../controllers/produtoControlador");
 
 router.get("/", (req, res) => {
     controladorCategoria.buscar()
@@ -36,4 +37,15 @@ function renderizarCategorias(req, res, nomePagina) {
         .catch((error) => res.status(400).json(error.message));
 }
 
-module.exports = { router, renderizarCategorias };
+function renderizarCategoriasEProdutos(req, res, nomePagina) {
+    Promise.all([
+        controladorCategoria.buscar(), // Buscar categorias
+        controladorProduto.buscar()    // Buscar produtos
+    ])
+    .then(([categorias, produtos]) => {
+        res.render(nomePagina, { title: nomePagina, categorias, produtos });
+    })
+    .catch((error) => res.status(400).json(error.message));
+}
+
+module.exports = { router, renderizarCategorias, renderizarCategoriasEProdutos };

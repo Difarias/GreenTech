@@ -16,20 +16,32 @@ class ProdutoModelo{
         });  
     }
 
-    criar(novoProduto){
-        const sql = "INSERT INTO TB_PRODUTOS SET ?";
+    criar(novoProduto) {
+        const sql = "INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        return new Promise((resolve, reject)=>{
-            conexao.query(sql, novoProduto, (error, resposta) =>{
-                if (error){
+        const valores = [
+            novoProduto.nome_produto,
+            novoProduto.preco_produto,
+            novoProduto.imagem_produto,
+            novoProduto.dataCadastro_produto,
+            novoProduto.descricao_produto,
+            novoProduto.id_categoria_TB_CATEGORIAS,
+            novoProduto.avaliacao_produto
+        ];
+
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, valores, (error, resposta) => {
+                if (error) {
                     console.log("Erro ao criar produto: " + novoProduto);
                     reject(error);
                 }
-                console.log("Sucesso ao criar produto: "+ novoProduto);
+                console.log("Sucesso ao criar produto: " + novoProduto);
                 resolve(resposta);
             });
         });
-    }  
+    }
+
+    
 
     atualizar(produtoAtualizado, id_produto){
         const sql = "UPDATE TB_PRODUTOS SET ? WHERE id_produto = ?";

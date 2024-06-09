@@ -1,23 +1,50 @@
 const { Router }             = require("express");
 const router                 = Router();
-const controladorProduto = require("../controllers/produtoControlador");
+const multer                 = require('multer');
+const path                   = require('path');
+const controladorProduto     = require("../controllers/produtoControlador");
+
+// Defina o diretório raiz onde as imagens serão armazenadas no servidor
+const rootDirectory = '/images/produtos/';
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // Define o diretório de destino como 'public/images/produtos' dentro do diretório raiz
+        cb(null, path.join('public', 'images', 'produtos'));
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 } // Limite de 5MB
+});
 
 router.get("/", (req, res) => {
-    const listaProdutos = controladorProduto.buscar();
-    
-    listaProdutos
-    .then((produtos) => res.status(200).json(produtos))
-    .catch((error) => res.status(400).json(error.message));
+    controladorProduto.buscar()
+        .then((produtos) => {
+            res.render("principal", { produtos: produtos });
+        })
+        .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/", (req, res) => {
-    const novoProduto = req.body;
-    const produto = controladorProduto.criar(novoProduto);
+router.post('/', upload.single('imagem_produto'), (req, res) => {
+    const novoProduto = {
+        nome_produto: req.body.nome_produto,
+        preco_produto: req.body.preco_produto,
+        dataCadastro_produto: req.body.dataCadastro_produto,
+        descricao_produto: req.body.descricao_produto,
+        id_categoria_TB_CATEGORIAS: req.body.id_categoria_TB_CATEGORIAS,
+        imagem_produto: req.file.path, // Salva o caminho da imagem no servidor
+        avaliacao_produto:req.body.avaliacao_produto
+    };
 
-    produto
-    .then(ProdutoCriado => res.status(200).json(ProdutoCriado))
-    .catch(error => res.status(400).json(error.message));
+    controladorProduto.criar(novoProduto)
+        .then(ProdutoCriado => res.status(200).json(ProdutoCriado))
+        .catch(error => res.status(400).json(error.message));
 });
+
 
 router.put("/:id", (req, res) => {
     const { id } = req.params;
@@ -36,6 +63,10 @@ router.delete("/:id", (req, res) => {
     produto
     .then((respProdutoDeletado)=> res.status(200).json(respProdutoDeletado))
     .catch(error => res.status(400).json(error.message));
+});
+
+router.get("/inserir", (req, res) => {
+    res.render("inserirProduto", { title: "Inserir Novo Produto" });
 });
 
 module.exports = router;
