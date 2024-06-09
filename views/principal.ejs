@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html  >
 <head>
-  <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
@@ -67,87 +66,31 @@
         <div class="cards">
             <h2>Produtos em Destaque</h2>
             <div class="slider js-slider">
-                <div class="card">
-                    <div class="like"></div>
-                    <img class="product" src="../images/lamp-led.jpeg">
-                    <h4 class="prod-name">Lampada Led</h4>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
-                    </div>
-                    <div class="price">
-                        <h5>R$ 299.90</h5>
-                    </div>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-                <div class="card">
-                    <div class="like"></div>
-                    <img class="product" src="../images/drone.jpg">
-                    <h4 class="prod-name">Drone</h4>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
-                    </div>
-                    <div class="price">
-                        <h5>R$ 299.90</h5>
-                    </div>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-                <div class="card">
-                    <div class="like"></div>
-                    <img class="product" src="../images/placa-solar.jpg">
-                    <h4 class="prod-name">Placa Solar</h4>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
-                    </div>
-                    <div class="price">
-                        <h5>R$ 299.90</h5>
-                    </div>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-                <div class="card">
-                    <div class="like"></div>
-                    <img class="product" src="../images/carregador.webp">
-                    <h4 class="prod-name">Carregador Portátil</h4>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
-                    </div>
-                    <div class="price">
-                        <h5>R$ 299.90</h5>
-                    </div>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-                <div class="card">
-                    <div class="like"></div>
-                    <img class="product" src="../images/irrigacao.jpg">
-                    <h4 class="prod-name">Placa Solar</h4>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
-                    </div>
-                    <div class="price">
-                        <h5>R$ 299.90</h5>
-                    </div>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
+                <% let produtosComCincoEstrelas = 0; %>
+                <% produtos.forEach(produto => { %>
+                    <% if (produto.avaliacao_produto === 5 && produtosComCincoEstrelas < 5) { %>
+                        <div class="card">
+                            <div class="like"></div>
+                            <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                            <h4 class="prod-name"><%= produto.nome_produto %></h4>
+                            <div class="rating">
+                                <% for (let i = 0; i < produto.avaliacao_produto; i++) { %>
+                                    <span class="star">&#9733;</span> <!-- Estrela preenchida -->
+                                <% } %>
+                                <% for (let i = produto.avaliacao_produto; i < 5; i++) { %>
+                                    <span class="star">&#9734;</span> <!-- Estrela vazia -->
+                                <% } %>
+                            </div>
+                            <div class="price">
+                                <h5>R$ <%= produto.preco_produto %></h5>
+                            </div>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                        <% produtosComCincoEstrelas++; %>
+                    <% } %>
+                <% }) %>
             </div>
+           
         </div>
             
         <div class="container2">
@@ -165,40 +108,30 @@
 
         <div class="container3">
             <div class="box">
-                <p>Selecionados para Voce!</p>
+                <p>Selecionados para Você!</p>
                 <div class="slider2">
-                    <div class="card2">
-                        <img class="product" src="../images/lamp-led.jpeg">
-                        <h4 class="prod-name">Lampada Led</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/drone.jpg">
-                        <h4 class="prod-name">Drone</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/placa-solar.jpg">
-                        <h4 class="prod-name">Placa Solar</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/battery-solar.webp">
-                        <h4 class="prod-name">Carregador Portátil</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
+                    <% let produtosSemCincoEstrelas = 0; %>
+                    <% produtos.forEach(produto => { %>
+                        <% if (produto.avaliacao_produto !== 5 && produtosSemCincoEstrelas < 5) { %>
+                            <div class="card2">
+                                <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                                <h4 class="prod-name"><%= produto.nome_produto %></h4>
+                                <div class="rating">
+                                    <% for (let i = 0; i < produto.avaliacao_produto; i++) { %>
+                                        <span class="star">&#9733;</span> <!-- Estrela preenchida -->
+                                    <% } %>
+                                    <% for (let i = produto.avaliacao_produto; i < 5; i++) { %>
+                                        <span class="star">&#9734;</span> <!-- Estrela vazia -->
+                                    <% } %>
+                                </div>
+                                <div class="price">
+                                    <h5>R$ <%= produto.preco_produto %></h5>
+                                </div>
+                                <button class="add-to-cart">Adicionar ao Carrinho</button>
+                            </div>
+                            <% produtosSemCincoEstrelas++; %>
+                        <% } %>
+                    <% }) %>
                 </div>
             </div>
         </div>
@@ -221,40 +154,22 @@
         
         <div class="container4">
             <div class="box">
-                <p>Veja Também!</p>
+                <p>Produtos Rurais!</p>
                 <div class="slider2">
-                    <div class="card2">
-                        <img class="product" src="../images/lamp-led.jpeg">
-                        <h4 class="prod-name">Lampada Led</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/drone.jpg">
-                        <h4 class="prod-name">Drone</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/placa-solar.jpg">
-                        <h4 class="prod-name">Placa Solar</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="card2">
-                        <img class="product" src="../images/carregador.webp">
-                        <h4 class="prod-name">Carregador Portátil</h4>
-                        <div class="price">
-                            <h5>R$ 299.90</h5>
-                        </div>
-                        <button class="add-to-cart">Adicionar ao Carrinho</button>
-                    </div>
+                    <% let produtosCategoriaDois = 0; %>
+                    <% produtos.forEach(produto => { %>
+                        <% if (produto.id_categoria_TB_CATEGORIAS === 2 && produtosCategoriaDois < 5) { %>
+                            <div class="card2">
+                                <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                                <h4 class="prod-name"><%= produto.nome_produto %></h4>
+                                <div class="price">
+                                    <h5>R$ <%= produto.preco_produto %></h5>
+                                </div>
+                                <button class="add-to-cart">Adicionar ao Carrinho</button>
+                            </div>
+                            <% produtosCategoriaDois++; %>
+                        <% } %>
+                    <% }) %>
                 </div>
             </div>
         </div>

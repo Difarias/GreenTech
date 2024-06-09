@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Novo Produto</title>
+    <link rel="stylesheet" href="../styles/cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- O conteúdo do header é o mesmo, não foi alterado -->
+    </header>
+    <div class="form-container">
+        <form id="formProduto" enctype="multipart/form-data" method="POST" action="/produtos">
+            <div class="form-slice active">
+                <h2>Inserir Novo Produto</h2>
+                <div class="input-group">
+                    <i class="fas fa-tag"></i>
+                    <input type="text" name="nome_produto" id="nome_produto" placeholder="Nome do Produto" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" step="0.01" name="preco_produto" id="preco_produto" placeholder="Preço do Produto" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-image"></i>
+                    <input type="file" name="imagem_produto" id="imagem_produto" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" name="dataCadastro_produto" id="dataCadastro_produto" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-info-circle"></i>
+                    <textarea name="descricao_produto" id="descricao_produto" placeholder="Descrição do Produto" required></textarea>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-list"></i>
+                    <input type="number" name="id_categoria_TB_CATEGORIAS" id="id_categoria_TB_CATEGORIAS" placeholder="ID da Categoria" required>
+                </div>
+                <div class="input-group">
+                    <label for="avaliacao_produto">Avaliação do Produto:</label><br>
+                    <input type="radio" id="avaliacao1" name="avaliacao_produto" value="1" required>
+                    <label for="avaliacao1">1</label>
+                    <input type="radio" id="avaliacao2" name="avaliacao_produto" value="2">
+                    <label for="avaliacao2">2</label>
+                    <input type="radio" id="avaliacao3" name="avaliacao_produto" value="3">
+                    <label for="avaliacao3">3</label>
+                    <input type="radio" id="avaliacao4" name="avaliacao_produto" value="4">
+                    <label for="avaliacao4">4</label>
+                    <input type="radio" id="avaliacao5" name="avaliacao_produto" value="5">
+                    <label for="avaliacao5">5</label>
+                </div>
+                <button type="submit">Inserir Produto</button>
+            </div>
+        </form>
+    </div>
+    <footer class="container-footer">
+        <div class="footer-box">
+            <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('formProduto').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const avaliacaoSelecionada = document.querySelector('input[name="avaliacao_produto"]:checked + label').textContent;
+            document.getElementById('formProduto').setAttribute('avaliacao_produto', avaliacaoSelecionada);
+            this.submit();
+        });
+    </script>
+</body>
+</html>

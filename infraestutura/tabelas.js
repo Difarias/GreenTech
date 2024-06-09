@@ -80,7 +80,7 @@ class Tabelas {
             id_produto INT AUTO_INCREMENT PRIMARY KEY,
             nome_produto VARCHAR(50) NOT NULL,
             preco_produto FLOAT NOT NULL,
-            imagem_produto BLOB NOT NULL,
+            imagem_produto TEXT NOT NULL,
             dataCadastro_produto DATE NOT NULL,
             descricao_produto VARCHAR(500) NOT NULL,
             id_categoria_TB_CATEGORIAS INTEGER,
