@@ -36,7 +36,7 @@ router.post('/', upload.single('imagem_produto'), (req, res) => {
         dataCadastro_produto: req.body.dataCadastro_produto,
         descricao_produto: req.body.descricao_produto,
         id_categoria_TB_CATEGORIAS: req.body.id_categoria_TB_CATEGORIAS,
-        imagem_produto: req.file.path, // Salva o caminho da imagem no servidor
+        imagem_produto: req.file.path.replace(/public[\\\/]/, ''),
         avaliacao_produto:req.body.avaliacao_produto
     };
 

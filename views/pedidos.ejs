@@ -82,7 +82,7 @@
                     const orderList   = document.querySelector('.order-list');
                     
                     if (loginButton && dropbtn && logoutMenu) {
-                        dropbtn.textContent = localStorage.getItem('username');
+                        dropbtn.textContent = localStorage.getItem('username').split(' ')[0];
                         logoutMenu.style.display = 'block';
                         loginButton.style.display = 'none';
                         

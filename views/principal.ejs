@@ -30,9 +30,10 @@
                     <img class="search-icon" src="../images/search1.svg" alt="Ícone de Pesquisa">
                 </div>
             </div>
-            <div class="cart">
+            <div class="cart" id="cart-icon">
                 <a href="/pagamento" rel="noopener noreferrer">
                     <img src="../images/cart.svg">
+                    <span id="cart-item-count" class="cart-item-count">0</span>
                 </a>
             </div>
             <div class="button">
@@ -84,7 +85,7 @@
                             <div class="price">
                                 <h5>R$ <%= produto.preco_produto %></h5>
                             </div>
-                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                            <button class="add-to-cart" onclick="addToCart('<%= produto.id_produto %>')">Adicionar ao Carrinho</button>
                         </div>
                         <% produtosComCincoEstrelas++; %>
                     <% } %>
@@ -114,14 +115,14 @@
                     <% produtos.forEach(produto => { %>
                         <% if (produto.avaliacao_produto !== 5 && produtosSemCincoEstrelas < 5) { %>
                             <div class="card2">
-                                <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                                <img class="product" src="<%= produto.imagem_produto %>">
                                 <h4 class="prod-name"><%= produto.nome_produto %></h4>
                                 <div class="rating">
                                     <% for (let i = 0; i < produto.avaliacao_produto; i++) { %>
-                                        <span class="star">&#9733;</span> <!-- Estrela preenchida -->
+                                        <span class="star">&#9733;</span> 
                                     <% } %>
                                     <% for (let i = produto.avaliacao_produto; i < 5; i++) { %>
-                                        <span class="star">&#9734;</span> <!-- Estrela vazia -->
+                                        <span class="star">&#9734;</span> 
                                     <% } %>
                                 </div>
                                 <div class="price">
@@ -185,9 +186,10 @@
         </div>
     </footer>
     <script>
+        let cartItems = [];
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
-                const username = localStorage.getItem('username');
+                const username = localStorage.getItem('username').split(' ')[0];
                 if (username) {
                     const loginButton = document.querySelector('.login-button');
                     const dropbtn = document.querySelector('.dropbtn');
@@ -212,6 +214,15 @@
             location.reload();
         }
 
+        function addToCart(productId) {
+            cartItems.push(productId);
+            updateCartItemCount();
+        }
+
+        function updateCartItemCount() {
+            const cartItemCount = document.getElementById('cart-item-count');
+            cartItemCount.innerText = cartItems.length;
+        }
     loadUsername();
     </script>
     

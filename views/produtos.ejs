@@ -213,7 +213,7 @@
   <script>
     function loadUsername() {
         document.addEventListener("DOMContentLoaded", function() {
-            const username = localStorage.getItem('username');
+            const username = localStorage.getItem('username').split(' ')[0];
             if (username) {
                 const loginButton = document.querySelector('.login-button');
                 const dropbtn = document.querySelector('.dropbtn');
