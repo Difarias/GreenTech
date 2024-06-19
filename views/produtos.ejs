@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1">
   <link rel="shortcut icon" href="/images/logo.jpeg" type="image/x-icon">
   <meta name="description" content="">
-  <link rel="stylesheet" href="styles/produtos.css">
+  <link rel="stylesheet" href="../styles/produtos.css">
   <title>Produtos</title>
 </head>
 <body>
@@ -53,7 +53,7 @@
     <nav class="category">
       <ul class="nav">
           <% categorias.forEach(categoria => { %>
-              <li><a href="/produtos"><%= categoria.nome_categoria %></a></li>
+              <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
           <% }) %>
       </ul>
   </nav>
@@ -63,157 +63,34 @@
     <section class="product-listing">
       <h2>Produtos em Destaque</h2>
       <div class="products">
-        <!-- Fila 1 -->
-        <div class="product-card">
-          <img src="images/lamp-led.jpeg" alt="Lâmpada Led">
-          <h3>Lâmpada Led</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/drone.jpg" alt="Drone">
-          <h3>Drone</h3>
-          <div class="stars">★★★★★</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/placa-solar.jpg" alt="Placa Solar">
-          <h3>Placa Solar</h3>
-          <div class="stars">★★★☆☆</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/carregador.webp" alt="Carregador Portátil">
-          <h3>Carregador Portátil</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/OIP.jpeg" alt="Placa Solar">
-          <h3>Placa Solar</h3>
-          <div class="stars">★★☆☆☆</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <!-- Fila 2 -->
-        <div class="product-card">
-          <img src="images/bike-eletric.jpg" alt="Smartphone">
-          <h3>Bicicleta Elétrica</h3>
-          <div class="stars">★★★★★</div>
-          <p class="price">R$ 1799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/colunas-bluetooth.webp" alt="Tablet">
-          <h3>Caixa de Som</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 1499,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/irrigacao.jpg" alt="Laptop">
-          <h3>Irrigadores</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 2799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/smartwatch.jpg" alt="Smartwatch">
-          <h3>Smartwatch</h3>
-          <div class="stars">★★★☆☆</div>
-          <p class="price">R$ 699,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/turbina-eolica.webp" alt="Fone de Ouvido">
-          <h3>Turbina Eólica</h3>
-          <div class="stars">★★★★★</div>
-          <p class="price">R$ 199,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <!-- Fila 3 -->
-        <div class="product-card">
-          <img src="images/turbina_laranja.webp" alt="TV">
-          <h3>Turbina Potente</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 2399,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/camera.jpeg" alt="Câmera">
-          <h3>Câmera</h3>
-          <div class="stars">★★★☆☆</div>
-          <p class="price">R$ 2799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/moto_eletrica.webp" alt="Monitor">
-          <h3>Moto Elétrica</h3>
-          <div class="stars">★★★★★</div>
-          <p class="price">R$ 899,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/camera_branca.webp" alt="Teclado">
-          <h3>Câmera Ultra HD</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 199,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/gerador.webp" alt="Mouse">
-          <h3>Gerador</h3>
-          <div class="stars">★★☆☆☆</div>
-          <p class="price">R$ 149,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <!-- Fila 4 -->
-        <div class="product-card">
-          <img src="images/lampadas_amarela.webp" alt="Caixa de Som">
-          <h3>Lâmpadas Amarelas</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 299,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/fogao_solar.webp" alt="Projetor">
-          <h3>Fogão Solar</h3>
-          <div class="stars">★★★☆☆</div>
-          <p class="price">R$ 1799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/purificador-de-ar.jpg" alt="Refrigerador">
-          <h3>Refrigerador</h3>
-          <div class="stars">★★★★☆</div>
-          <p class="price">R$ 2799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/aquecedor_piscina.webp" alt="Micro-ondas">
-          <h3>Aquecedor de Piscina</h3>
-          <div class="stars">★★☆☆☆</div>
-          <p class="price">R$ 499,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
-        <div class="product-card">
-          <img src="images/aquecedor.webp" alt="Fogão">
-          <h3>Aquecedor</h3>
-          <div class="stars">★★★☆☆</div>
-          <p class="price">R$ 1799,90</p>
-          <button class="add-to-cart">Adicionar ao Carrinho</button>
-        </div>
+        <% if (produtos.length > 0) { %>
+          <% produtos.forEach(produto => { %>
+            <div class="product-card">
+              <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+              <h3><%= produto.nome_produto %></h3>
+              <div class="stars">
+                <% for (let i = 0; i < 5; i++) { %>
+                  <% if (i < produto.avaliacao_produto) { %>
+                    ★
+                  <% } else { %>
+                    ☆
+                  <% } %>
+                <% } %>
+              </div>
+              <p class="price">R$ <%= produto.preco_produto %></p>
+              <button class="add-to-cart">Adicionar ao Carrinho</button>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>Nenhum produto encontrado nesta categoria.</p>
+        <% } %>
       </div>
     </section>
   </main>
   <script>
     function loadUsername() {
         document.addEventListener("DOMContentLoaded", function() {
-            const username = localStorage.getItem('username').split(' ')[0];
+            const username = localStorage.getItem('username')?.split(' ')[0];
             if (username) {
                 const loginButton = document.querySelector('.login-button');
                 const dropbtn = document.querySelector('.dropbtn');

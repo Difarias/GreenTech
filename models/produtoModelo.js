@@ -16,6 +16,22 @@ class ProdutoModelo{
         });  
     }
 
+    listarPorCategoria(categoriaId) {
+        const sql = "SELECT * FROM TB_PRODUTOS WHERE id_categoria_TB_CATEGORIAS = ?";
+
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [categoriaId], (error, resposta) => {
+                if (error) {
+                    console.log("Erro ao consultar produtos por categoria");
+                    reject(error);
+                } else {
+                    console.log("Sucesso ao consultar produtos por categoria");
+                    resolve(resposta);
+                }
+            });
+        });
+    }
+
     criar(novoProduto) {
         const sql = "INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -40,8 +56,6 @@ class ProdutoModelo{
             });
         });
     }
-
-    
 
     atualizar(produtoAtualizado, id_produto){
         const sql = "UPDATE TB_PRODUTOS SET ? WHERE id_produto = ?";

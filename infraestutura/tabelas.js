@@ -84,6 +84,7 @@ class Tabelas {
             dataCadastro_produto DATE NOT NULL,
             descricao_produto VARCHAR(500) NOT NULL,
             id_categoria_TB_CATEGORIAS INTEGER,
+            avaliacao_produto INTEGER,
             FOREIGN KEY (id_categoria_TB_CATEGORIAS) REFERENCES TB_CATEGORIAS(id_categoria)
         );
         

@@ -55,7 +55,7 @@
         <nav class="category">
             <ul class="nav">
                 <% categorias.forEach(categoria => { %>
-                    <li><a href="/produtos"><%= categoria.nome_categoria %></a></li>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
                 <% }) %>
             </ul>
     </header>
@@ -155,7 +155,7 @@
         
         <div class="container4">
             <div class="box">
-                <p>Produtos Rurais!</p>
+                <p>Produtos Tecnologia!</p>
                 <div class="slider2">
                     <% let produtosCategoriaDois = 0; %>
                     <% produtos.forEach(produto => { %>

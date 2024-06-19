@@ -3,6 +3,8 @@ const router                 = Router();
 const multer                 = require('multer');
 const path                   = require('path');
 const controladorProduto     = require("../controllers/produtoControlador");
+const controladorCategoria   = require("../controllers/categoriaControlador");
+
 
 // Defina o diretório raiz onde as imagens serão armazenadas no servidor
 const rootDirectory = '/images/produtos/';
@@ -67,6 +69,19 @@ router.delete("/:id", (req, res) => {
 
 router.get("/inserir", (req, res) => {
     res.render("inserirProduto", { title: "Inserir Novo Produto" });
+});
+
+router.get("/:id", (req, res) => {
+    const categoriaId = req.params.id;
+
+    Promise.all([
+        controladorProduto.buscarPorCategoria(categoriaId),
+        controladorCategoria.buscar()
+    ])
+    .then(([produtos, categorias]) => {
+        res.render("produtos", { produtos: produtos, categorias: categorias, categoriaId });
+    })
+    .catch((error) => res.status(400).json(error.message));
 });
 
 module.exports = router;
