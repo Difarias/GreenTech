@@ -6,13 +6,15 @@ const rotasPedido = require("./pedidoRotas");
 const rotasTipoTransacao = require("./tipoTransacaoRotas");
 const rotasTransacao = require("./transacaoRotas");
 const rotasProdutoPedido = require("./produtoPedidoRotas");
+const rotasPagamento   = require("./pagamentoRotas");
 
 module.exports = (app, express) => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
     app.get('/', (req, res) => {
-        rotasCategoria.renderizarCategoriasEProdutos(req, res, 'principal');
+        const cartItems = [];
+        rotasCategoria.renderizarCategoriasEProdutos(req, res, 'principal', cartItems);
     });
     
     app.get('/login', (req, res) => {
@@ -24,7 +26,7 @@ module.exports = (app, express) => {
     });
 
     app.get('/pagamento', (req, res) => {
-        rotasCategoria.renderizarCategorias(req, res, 'pagamento');
+        rotasPagamento.renderizarCarrinho(req, res, 'pagamento');
     });
 
     app.get('/pedidos', (req, res) => {
@@ -49,6 +51,7 @@ module.exports = (app, express) => {
     app.use('/enderecos', rotasEndereco);
     app.use('/clientes', rotasCliente);
     app.use('/produtos', rotasProduto);
+    app.use('/pagamento', rotasPagamento.router);
     app.use('/pedidos', rotasPedido);
     app.use('/tipos-transacao', rotasTipoTransacao);
     app.use('/transacoes', rotasTransacao);

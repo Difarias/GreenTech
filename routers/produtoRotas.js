@@ -5,7 +5,6 @@ const path                   = require('path');
 const controladorProduto     = require("../controllers/produtoControlador");
 const controladorCategoria   = require("../controllers/categoriaControlador");
 
-
 // Defina o diretório raiz onde as imagens serão armazenadas no servidor
 const rootDirectory = '/images/produtos/';
 

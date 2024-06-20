@@ -32,6 +32,20 @@ class ProdutoModelo{
         });
     }
 
+    buscarPorIds(ids = []) {
+        const sql = "SELECT * FROM TB_PRODUTOS WHERE id_produto IN (?)";
+        
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [ids], (error, resposta) => {
+                if (error) {
+                    console.log("Erro ao buscar produtos por IDs");
+                    reject(error);
+                }
+                resolve(resposta);
+            });
+        });
+    }
+
     criar(novoProduto) {
         const sql = "INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 

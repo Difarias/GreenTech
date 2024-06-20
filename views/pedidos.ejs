@@ -52,6 +52,9 @@
         </div>  
         <nav class="category">
             <ul class="nav">
+                <% categorias.forEach(categoria => { %>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
+                <% }) %>
             </ul>
         </nav>
     </header>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Pagamento</title>
     <link rel="stylesheet" href="../styles/pagamento.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -50,7 +50,7 @@
         <nav class="category">
             <ul class="nav">
                 <% categorias.forEach(categoria => { %>
-                    <li><a href="/produtos"><%= categoria.nome_categoria %></a></li>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
                 <% }) %>
             </ul>
         </nav>
@@ -58,39 +58,30 @@
     <div class="container">
         <div class="products">
             <h1>Meus Produtos</h1>
-            <div class="product">
-                <img src="images/bike-eletric.jpg" alt="Bicicleta Elétrica">
-                <div class="product-details">
-                    <h2>Bicicleta Elétrica</h2>
-                    <div class="quantity">
-                        <button class="quantity-button decrease"><i class="fas fa-minus"></i></button>
-                        <p class="quantity-value">1</p>
-                        <button class="quantity-button increase"><i class="fas fa-plus"></i></button>
+            <% let total = 0; %>
+            <div class="container2">
+            <% produtos.forEach(produto => { %>
+                <div class="product" data-price="<%= produto.preco_produto %>">
+                    <img src="<%= produto.imagem_produto %>" alt="<%= produto.nome_produto %>">
+                    <div class="product-details">
+                        <h2><%= produto.nome_produto %></h2>
+                        <div class="quantity">
+                            <button class="quantity-button decrease"><i class="fas fa-minus"></i></button>
+                            <p class="quantity-value">1</p>
+                            <button class="quantity-button increase"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="price-and-delete">
+                        <a href="#" class="delete"><i class="fas fa-trash"></i></a>
+                        <p class="price">R$ <%= produto.preco_produto.toFixed(2) %></p>
                     </div>
                 </div>
-                <div class="price-and-delete">
-                    <a href="#" class="delete"><i class="fas fa-trash"></i></a>
-                    <p class="price">R$ 4,49</p>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/drone.jpg" alt="Drone Elétrico GT-500">
-                <div class="product-details">
-                    <h2>Drone Elétrico GT-500</h2>
-                    <div class="quantity">
-                        <button class="quantity-button decrease"><i class="fas fa-minus"></i></button>
-                        <p class="quantity-value">1</p>
-                        <button class="quantity-button increase"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-                <div class="price-and-delete">
-                    <a href="#" class="delete"><i class="fas fa-trash"></i></a>
-                    <p class="price">R$ 1,84</p>
-                </div>
+                <% total += produto.preco_produto; %>
+            <% }); %>
             </div>
             <div class="subtotal">
                 <p>VALOR TOTAL</p>
-                <p>R$ 6,33</p>
+                <p id="total-value">R$ <%= total.toFixed(2) %></p>
             </div>
         </div>
         <div class="payment-methods">
@@ -147,7 +138,69 @@
             location.reload();
         }
 
-    loadUsername();
+        loadUsername();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const increaseButtons = document.querySelectorAll('.quantity-button.increase');
+            const decreaseButtons = document.querySelectorAll('.quantity-button.decrease');
+            const deleteButtons = document.querySelectorAll('.delete');
+            const totalValueElement = document.getElementById('total-value');
+
+            increaseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const quantityElement = this.previousElementSibling;
+                    let quantity = parseInt(quantityElement.textContent);
+                    const productElement = this.closest('.product');
+                    const priceElement = productElement.querySelector('.price');
+                    const originalPrice = parseFloat(productElement.getAttribute('data-price'));
+
+                    quantity += 1;
+                    quantityElement.textContent = quantity;
+                    priceElement.textContent = 'R$ ' + (originalPrice * quantity).toFixed(2);
+
+                    updateTotal();
+                });
+            });
+
+            decreaseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const quantityElement = this.nextElementSibling;
+                    let quantity = parseInt(quantityElement.textContent);
+                    const productElement = this.closest('.product');
+                    const priceElement = productElement.querySelector('.price');
+                    const originalPrice = parseFloat(productElement.getAttribute('data-price'));
+
+                    if (quantity > 1) {
+                        quantity -= 1;
+                        quantityElement.textContent = quantity;
+                        priceElement.textContent = 'R$ ' + (originalPrice * quantity).toFixed(2);
+
+                        updateTotal();
+                    }
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productElement = this.closest('.product');
+                    productElement.remove();
+                    updateTotal();
+                });
+            });
+
+            function updateTotal() {
+                let total = 0;
+
+                document.querySelectorAll('.product').forEach(product => {
+                    const quantity = parseInt(product.querySelector('.quantity-value').textContent);
+                    const price = parseFloat(product.getAttribute('data-price'));
+                    total += quantity * price;
+                });
+
+                totalValueElement.textContent = 'R$ ' + total.toFixed(2);
+            }
+        });
     </script>
 </body>
 </html>

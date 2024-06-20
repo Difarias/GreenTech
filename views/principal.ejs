@@ -31,11 +31,11 @@
                 </div>
             </div>
             <div class="cart" id="cart-icon">
-                <a href="/pagamento" rel="noopener noreferrer">
+                <a id="cart-link" href="#" rel="noopener noreferrer">
                     <img src="../images/cart.svg">
                     <span id="cart-item-count" class="cart-item-count">0</span>
                 </a>
-            </div>
+            </div>           
             <div class="button">
                 <div class="loginimg">
                     <img src="../images/login-icon.svg" alt="icon login">
@@ -58,6 +58,7 @@
                     <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
                 <% }) %>
             </ul>
+        </nav>
     </header>
 
     <main>
@@ -128,7 +129,7 @@
                                 <div class="price">
                                     <h5>R$ <%= produto.preco_produto %></h5>
                                 </div>
-                                <button class="add-to-cart">Adicionar ao Carrinho</button>
+                                <button class="add-to-cart" onclick="addToCart('<%= produto.id_produto %>')">Adicionar ao Carrinho</button>
                             </div>
                             <% produtosSemCincoEstrelas++; %>
                         <% } %>
@@ -155,7 +156,7 @@
         
         <div class="container4">
             <div class="box">
-                <p>Produtos Tecnologia!</p>
+                <p>Tecnologia Verde!</p>
                 <div class="slider2">
                     <% let produtosCategoriaDois = 0; %>
                     <% produtos.forEach(produto => { %>
@@ -166,7 +167,7 @@
                                 <div class="price">
                                     <h5>R$ <%= produto.preco_produto %></h5>
                                 </div>
-                                <button class="add-to-cart">Adicionar ao Carrinho</button>
+                                <button class="add-to-cart" onclick="addToCart('<%= produto.id_produto %>')">Adicionar ao Carrinho</button>
                             </div>
                             <% produtosCategoriaDois++; %>
                         <% } %>
@@ -187,9 +188,19 @@
     </footer>
     <script>
         let cartItems = [];
+    
+        function loadDataFromLocalStorage() {
+            const storedCartItems = localStorage.getItem('cartItems');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+            }
+            updateCartItemCount();
+            updateCartLink(); // Chama a função para garantir que o link do carrinho esteja atualizado ao carregar a página
+        }
+    
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
-                const username = localStorage.getItem('username').split(' ')[0];
+                const username = localStorage.getItem('username')?.split(' ')[0];
                 if (username) {
                     const loginButton = document.querySelector('.login-button');
                     const dropbtn = document.querySelector('.dropbtn');
@@ -208,23 +219,38 @@
                 }
             });
         }
-
+    
         function clearLocalStorage() {
             localStorage.removeItem('username');
+            localStorage.removeItem('cartItems');
             location.reload();
         }
-
+    
         function addToCart(productId) {
             cartItems.push(productId);
+            saveCartItemsToLocalStorage();
             updateCartItemCount();
+            updateCartLink();
         }
-
+    
+        function saveCartItemsToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+    
         function updateCartItemCount() {
             const cartItemCount = document.getElementById('cart-item-count');
             cartItemCount.innerText = cartItems.length;
         }
-    loadUsername();
+    
+        function updateCartLink() {
+            const cartLink = document.getElementById('cart-link');
+            cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+        }
+    
+        loadUsername();
+        loadDataFromLocalStorage();
     </script>
+    
     
 </body>
 </html>

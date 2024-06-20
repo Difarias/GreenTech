@@ -248,6 +248,11 @@ header{
     margin-bottom: 20px;
 }
 
+.container2{
+    max-height: 236px;
+    overflow-y: auto;
+}
+
 .product {
     display: flex;
     justify-content: space-between;

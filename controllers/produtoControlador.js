@@ -9,6 +9,10 @@ class ProdutoControlador{
     buscarPorCategoria(categoriaId) {
         return modeloProduto.listarPorCategoria(categoriaId);
     }
+
+    buscarPorIds(listaProdutos =[]){
+        return modeloProduto.buscarPorIds(listaProdutos);
+    }
     
     criar(novoProduto){
         return modeloProduto.criar(novoProduto);
