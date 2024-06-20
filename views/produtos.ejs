@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
+  <meta name="viewport" content="width=device-width, minimum-scale=1">
+  <link rel="shortcut icon" href="/images/logo.jpeg" type="image/x-icon">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../styles/produtos.css">
+  <title>Produtos</title>
+</head>
+<body>
+  <header>
+    <div class="header">
+      <div class="logo">
+        <div class="logoimg">
+          <a href="/">
+            <img src="../images/logo.jpeg" alt="Logo do E-commerce">
+          </a>
+        </div>
+        <div class="logotext">
+          <h1>GreenTech</h1>
+        </div>
+      </div>
+      <div class="searcher">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Buscar...">
+          <img class="search-icon" src="../images/search1.svg" alt="Ícone de Pesquisa">
+        </div>
+      </div>
+      <div class="cart">
+        <a href="pagamento" rel="noopener noreferrer">
+          <img src="../images/cart.svg">
+        </a>
+      </div>
+      <div class="button">
+        <div class="loginimg">
+            <img src="../images/login-icon.svg" alt="icon login">
+            <a class="login-button" href="/login">Login</a>
+        </div>
+        <div class="logout-menu">
+            <div class="dropdown">
+                <button class="dropbtn">Login</button>
+                <div class="dropdown-content">
+                    <a id="meus-pedidos" href="/pedidos">Meus Pedidos</a>
+                    <a href="#" onclick="clearLocalStorage()">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <nav class="category">
+      <ul class="nav">
+          <% categorias.forEach(categoria => { %>
+              <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
+          <% }) %>
+      </ul>
+  </nav>
+  </header>
+
+  <main>
+    <section class="product-listing">
+      <h2>Produtos em Destaque</h2>
+      <div class="products">
+        <% if (produtos.length > 0) { %>
+          <% produtos.forEach(produto => { %>
+            <div class="product-card">
+              <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+              <h3><%= produto.nome_produto %></h3>
+              <div class="stars">
+                <% for (let i = 0; i < 5; i++) { %>
+                  <% if (i < produto.avaliacao_produto) { %>
+                    ★
+                  <% } else { %>
+                    ☆
+                  <% } %>
+                <% } %>
+              </div>
+              <p class="price">R$ <%= produto.preco_produto %></p>
+              <button class="add-to-cart">Adicionar ao Carrinho</button>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>Nenhum produto encontrado nesta categoria.</p>
+        <% } %>
+      </div>
+    </section>
+  </main>
+  <script>
+    function loadUsername() {
+        document.addEventListener("DOMContentLoaded", function() {
+            const username = localStorage.getItem('username')?.split(' ')[0];
+            if (username) {
+                const loginButton = document.querySelector('.login-button');
+                const dropbtn = document.querySelector('.dropbtn');
+                const logoutMenu = document.querySelector('.logout-menu');
+                
+                if (loginButton && dropbtn && logoutMenu) {
+                    dropbtn.textContent = username;
+                    logoutMenu.style.display = 'block';
+                    loginButton.style.display = 'none';
+                    
+                    dropbtn.addEventListener('click', function() {
+                        const dropdownContent = document.querySelector('.dropdown-content');
+                        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+                    });
+                }
+            }
+        });
+    }
+
+    function clearLocalStorage() {
+        localStorage.removeItem('username');
+        location.reload();
+    }
+
+loadUsername();
+</script>
+</body>
+</html>

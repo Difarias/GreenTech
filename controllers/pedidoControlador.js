@@ -16,6 +16,10 @@ class PedidoControlador{
     deletar(id_pedido){
         return modeloPedido.deletar(id_pedido);
     }
+
+    buscarPorCliente(idCliente) {
+        return modeloPedido.listarPorCliente(idCliente);
+    }
 }
 
 module.exports = new PedidoControlador();

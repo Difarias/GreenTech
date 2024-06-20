@@ -18,7 +18,7 @@ class EnderecoModelo{
 
     criar(novoEndereco){
         const sql = "INSERT INTO TB_ENDERECOS SET ?";
-
+        
         return new Promise((resolve, reject)=>{
             conexao.query(sql, novoEndereco, (error, resposta) =>{
                 if (error){

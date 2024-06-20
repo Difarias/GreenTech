@@ -60,7 +60,21 @@ class PedidoModelo{
                 resolve(resposta);
             });
         });
-    }  
-}
+    }
+    
+    listarPorCliente(idCliente) {
+        const sql = "SELECT * FROM TB_PEDIDOS WHERE id_cliente_TB_CLIENTE = ?";
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [idCliente], (error, resposta) => {
+                if (error) {
+                    console.log("Erro ao consultar os pedidos do cliente");
+                    reject(error);
+                }
+                console.log("Sucesso ao consultar os pedidos do cliente");
+                resolve(resposta);
+            });
+        });
+    }
+ }
 
 module.exports = new PedidoModelo();

@@ -4,10 +4,15 @@ const router  = require("./routers/index");
 const conexao = require("./infraestutura/conexao");
 const tabelas = require("./infraestutura/tabelas");
 const path    = require('path');
+const session = require('express-session');
 
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve arquivos estáticos da pasta 'views/partials'
-app.use(express.static(path.join(__dirname, 'views', 'partials')));
+app.use(session({
+    secret: 'my-secret-key', // Use uma chave secreta para assinar a sessão
+    resave: false,
+    saveUninitialized: true
+}));
 
 // Configurar o Express para usar EJS
 app.set('views', path.join(__dirname, 'views'));

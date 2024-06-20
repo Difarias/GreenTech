@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../styles/detalhesPedidos.css">
+  <title>Detalhes de Pedido</title>
+</head>
+
+<body> 
+    <header>
+        <div class="header">
+            <div class="logo">
+                <div class="logoimg">
+                    <a href="/">
+                        <img src="../images/logo.jpeg" alt="Logo do E-commerce">
+                    </a>
+                </div>
+                <div class="logotext">
+                    <h1>GreenTech</h1>
+                </div>
+            </div>
+            <div class="searcher">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Buscar...">
+                    <img class="search-icon" src="../images/search1.svg" alt="Ícone de Pesquisa">
+                </div>
+            </div>
+            <div class="cart">
+                <a href="/pedidos" rel="noopener noreferrer">
+                    <img src="../images/cart.svg">
+                </a>
+            </div>
+            <div class="button">
+                <div class="loginimg">
+                    <img src="../images/login-icon.svg" alt="icon login">
+                    <a class="login-button" href="/login">Login</a>
+                </div>
+                <div class="logout-menu">
+                    <div class="dropdown">
+                        <button class="dropbtn">Login</button>
+                        <div class="dropdown-content">
+                            <a id="meus-pedidos" href="/pedidos">Meus Pedidos</a>
+                            <a href="#" onclick="clearLocalStorage()">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="category">
+            <ul class="nav">
+                <% categorias.forEach(categoria => { %>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
+                <% }) %>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="order-details">
+            <div class="order-block">
+                <h2>Detalhes do Pedido</h2>
+                <div class="order-info">
+                    <p><strong>Número do Pedido:</strong> #123456</p>
+                    <p><strong>Data da Compra:</strong> 01/06/2024</p>
+                    <p><strong>Status:</strong> A caminho</p>
+                </div>
+            </div>
+    
+            <div class="order-block">
+                <h3>Itens</h3>
+                <div class="order-items">
+                    <div class="item">
+                        <img src="./images/battery-solar.jpg" alt="Carregador de Bateria">
+                        <div class="item-details">
+                            <p><strong>Produto:</strong> Carregador de Bateria</p>
+                            <span class="product-category" id="c1">Gadgets</span>
+                            <p><strong>Quantidade:</strong> 1</p>
+                            <p><strong>Preço:</strong> R$ 150,00</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="./images/colunas-bluetooth.jpg" alt="Mouse">
+                        <div class="item-details">
+                            <p><strong>Produto:</strong> Caixa de som Bluetooth</p>
+                            <span class="product-category" id="c1">Gadgets</span>
+                            <p><strong>Quantidade:</strong> 2</p>
+                            <p><strong>Preço:</strong> R$ 100,00</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="./images/purificador-de-ar.jpg" alt="Caixa de som Bluetooth">
+                        <div class="item-details">
+                            <p><strong>Produto:</strong> Umidificador de Ar</p>
+                            <span class="product-category" id="c3">Eletrônicos</span>
+                            <p><strong>Quantidade:</strong> 3</p>
+                            <p><strong>Preço:</strong> R$ 10,00</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="order-summary">
+                    <p><strong>Preço Total:</strong> R$ 260,00</p>
+                </div>
+            </div>
+    
+            <div class="order-block">
+                <div class="order-last">
+                    <div class="order-deliver">
+                        <p><strong>Endereço de Entrega:</strong></p>
+                        <p>Rua Exemplo, 123</p>
+                        <p>Cidade, Estado</p>
+                        <p>45603-350</p>
+                    </div>
+                    <div class="order-pay">
+                        <p><strong>Forma de Pagamento:</strong></p>
+                        <p> Cartão de Crédito</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container-footer">
+        <div class="footer-box">
+            <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
+        </div>
+        <div class="line"></div>
+        <div class="footer-footer">
+            <p>&copy; 2024 GreenTech</p>
+        </div>
+    </footer>
+
+    <script>
+        function loadUsername() {
+            document.addEventListener("DOMContentLoaded", function() {
+                const username = localStorage.getItem('username').split(' ')[0];
+                if (username) {
+                    const loginButton = document.querySelector('.login-button');
+                    const dropbtn = document.querySelector('.dropbtn');
+                    const logoutMenu = document.querySelector('.logout-menu');
+                    
+                    if (loginButton && dropbtn && logoutMenu) {
+                        dropbtn.textContent = username;
+                        logoutMenu.style.display = 'block';
+                        loginButton.style.display = 'none';
+                        
+                        dropbtn.addEventListener('click', function() {
+                            const dropdownContent = document.querySelector('.dropdown-content');
+                            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+                        });
+                    }
+                }
+            });
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('username');
+            location.reload();
+        }
+
+    loadUsername();
+    </script>
+</body>
+</html>

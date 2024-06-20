@@ -2,7 +2,7 @@ const { Router }             = require("express");
 const router                 = Router();
 const controladorEndereco = require("../controllers/enderecoControlador");
 
-router.get("/enderecos", (req, res) => {
+router.get("/", (req, res) => {
     const listaEnderecos = controladorEndereco.buscar();
     
     listaEnderecos
@@ -10,7 +10,7 @@ router.get("/enderecos", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-router.post("/enderecos", (req, res) => {
+router.post("/", (req, res) => {
     const novoEndereco = req.body;
     const endereco = controladorEndereco.criar(novoEndereco);
 
@@ -19,7 +19,7 @@ router.post("/enderecos", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.put("/endereco/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const enderecoAtualizado = req.body;
     const endereco = controladorEndereco.alterar(enderecoAtualizado, id);
@@ -29,7 +29,7 @@ router.put("/endereco/:id", (req, res) => {
     .catch(error => res.status(400).json(error.message));
 });
 
-router.delete("/endereco/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const endereco = controladorEndereco.deletar(id);
 
