@@ -46,7 +46,6 @@ router.post('/', upload.single('imagem_produto'), (req, res) => {
         .catch(error => res.status(400).json(error.message));
 });
 
-
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const produtoAtualizado = req.body;
@@ -72,13 +71,14 @@ router.get("/inserir", (req, res) => {
 
 router.get("/:id", (req, res) => {
     const categoriaId = req.params.id;
+    const BASE_URL = 'http://localhost:3000/';
 
     Promise.all([
         controladorProduto.buscarPorCategoria(categoriaId),
         controladorCategoria.buscar()
     ])
     .then(([produtos, categorias]) => {
-        res.render("produtos", { produtos: produtos, categorias: categorias, categoriaId });
+        res.render("produtos", { produtos: produtos, categorias: categorias, categoriaId, BASE_URL });
     })
     .catch((error) => res.status(400).json(error.message));
 });

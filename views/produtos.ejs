@@ -30,8 +30,9 @@
         </div>
       </div>
       <div class="cart">
-        <a href="pagamento" rel="noopener noreferrer">
-          <img src="../images/cart.svg">
+        <a id="cart-link" href="#" rel="noopener noreferrer">
+            <img src="../images/cart.svg" alt="Carrinho">
+            <span id="cart-item-count" class="cart-item-count">0</span> <!-- Contador de itens do carrinho -->
         </a>
       </div>
       <div class="button">
@@ -48,7 +49,7 @@
                 </div>
             </div>
         </div>
-    </div>
+      </div>
     </div>
     <nav class="category">
       <ul class="nav">
@@ -56,7 +57,7 @@
               <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
           <% }) %>
       </ul>
-  </nav>
+    </nav>
   </header>
 
   <main>
@@ -66,7 +67,7 @@
         <% if (produtos.length > 0) { %>
           <% produtos.forEach(produto => { %>
             <div class="product-card">
-              <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+              <img class="product" src="<%= `${BASE_URL}${produto.imagem_produto}` %>">
               <h3><%= produto.nome_produto %></h3>
               <div class="stars">
                 <% for (let i = 0; i < 5; i++) { %>
@@ -78,7 +79,7 @@
                 <% } %>
               </div>
               <p class="price">R$ <%= produto.preco_produto %></p>
-              <button class="add-to-cart">Adicionar ao Carrinho</button>
+              <button class="add-to-cart" data-product-id="<%= produto.id_produto %>">Adicionar ao Carrinho</button>
             </div>
           <% }) %>
         <% } else { %>
@@ -87,9 +88,12 @@
       </div>
     </section>
   </main>
+  
   <script>
-    function loadUsername() {
-        document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        let cartItems = [];
+
+        function loadUsername() {
             const username = localStorage.getItem('username')?.split(' ')[0];
             if (username) {
                 const loginButton = document.querySelector('.login-button');
@@ -107,15 +111,59 @@
                     });
                 }
             }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('id');
+            localStorage.removeItem('cartItems');
+            location.reload();
+        }
+
+        function loadDataFromLocalStorage() {
+            const storedCartItems = localStorage.getItem('cartItems');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+            }
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        function saveCartItemsToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function updateCartItemCount() {
+            const cartItemCount = document.getElementById('cart-item-count');
+            cartItemCount.innerText = cartItems.length;
+        }
+
+        function updateCartLink() {
+            const cartLink = document.getElementById('cart-link');
+            cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+            //cartLink.href = `/pagamento?produtos=${encodeURIComponent(JSON.stringify(cartItems))}`;
+        }
+
+        function addToCart(productId) {
+            cartItems.push(productId);
+            saveCartItemsToLocalStorage();
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        loadUsername();
+        loadDataFromLocalStorage();
+
+        // Adicionar evento de clique para cada botão "Adicionar ao Carrinho"
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                alert(productId);
+                addToCart(productId);
+            });
         });
-    }
-
-    function clearLocalStorage() {
-        localStorage.removeItem('username');
-        location.reload();
-    }
-
-loadUsername();
-</script>
+    });
+  </script>
 </body>
 </html>

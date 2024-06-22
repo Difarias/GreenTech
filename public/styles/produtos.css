@@ -80,9 +80,24 @@ header{
 }
 
 .cart img {
-    height: 30px;
-    width: 30px;
+    height: 25px; 
+    width: 25px; 
     cursor: pointer;
+}
+
+.cart {
+    position: relative;
+}
+
+.cart-item-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 12px;
 }
 
 .button {

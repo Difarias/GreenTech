@@ -4,10 +4,10 @@ const controladorProduto = require("../controllers/produtoControlador");
 const controladorCategoria = require("../controllers/categoriaControlador"); 
 const controladorTipoTransacao = require("../controllers/tipoTransacaoControlador");
 const controladorPedido = require("../controllers/pedidoControlador");
+const controladoProdutoPedido = require("../controllers/produtoPedidoControlador");
 
 router.post('/finalizar', (req, res) => {
     const novoPedido = req.body; // Os dados do pedido devem estar no corpo da requisição
-    console.log('Dados recebidos no backend:', novoPedido);
     controladorPedido.criar(novoPedido)
         .then(pedidoCriado => {
             res.status(201).json(pedidoCriado); // Retornar o pedido criado como resposta

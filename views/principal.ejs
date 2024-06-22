@@ -35,7 +35,6 @@
                     <img src="../images/cart.svg">
                     <span id="cart-item-count" class="cart-item-count">0</span>
                 </a>
-                <button onclick="showCartItems()">Verificar Carrinho</button>
             </div>           
             <div class="button">
                 <div class="loginimg">
@@ -254,16 +253,6 @@
             const cartLink = document.getElementById('cart-link');
             cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
         }
-
-        function showCartItems() {
-        const storedCartItems = localStorage.getItem('cartItems');
-        if (storedCartItems) {
-            const cartItems = JSON.parse(storedCartItems);
-            alert(`Itens no carrinho: ${cartItems.join(', ')}`);
-        } else {
-            alert('O carrinho está vazio.');
-        }
-    }
     
         loadUsername();
         loadDataFromLocalStorage();

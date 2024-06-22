@@ -56,4 +56,5 @@ module.exports = (app, express) => {
     app.use('/tipos-transacao', rotasTipoTransacao);
     app.use('/transacoes', rotasTransacao);
     app.use('/produtos-pedidos', rotasProdutoPedido);
+    app.use('/produtos-pedidos', rotasProdutoPedido);
 };
