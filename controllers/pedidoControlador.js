@@ -1,8 +1,26 @@
 const modeloPedido = require("../models/pedidoModelo");
 const modeloProdutoPedido = require("../models/produtoPedidoModelo");
+const modeloProduto = require("../models/produtoModelo"); // Importe o modelo de Produto
 
 
 class PedidoControlador{
+
+    async buscarDetalhesPedido(idPedido) {
+        try {
+            // Busca o pedido pelo ID, incluindo os produtos associados
+            const pedido = await modeloPedido.buscarPorIdComProdutos(idPedido);
+            //console.log("Detalhes do pedido:", pedido);
+
+            if (!pedido) {
+                throw new Error('Pedido não encontrado');
+            }
+            return pedido;
+        } catch (error) {
+            console.error("Erro ao buscar detalhes do pedido:", error);
+            throw new Error("Erro ao buscar detalhes do pedido.");
+        }
+    }
+
     buscar(){
         return modeloPedido.listar();
     }

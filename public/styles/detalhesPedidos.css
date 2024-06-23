@@ -286,7 +286,7 @@ h2{
     font-size: 25px;
 }
 h3{
-    margin-left: 14px;
+    margin-left: 30px;
     font-size: 22px;
 }
 
@@ -307,9 +307,10 @@ h3{
 }
 
 .item img {
-    width: 40%;
-    height: 200px;
-    border-radius: 8px;
+    
+        max-width: 150px; /* Define o tamanho máximo para a largura da imagem */
+        height: auto; /* Mantém a proporção da imagem */
+    
 }
 
 .item-details {

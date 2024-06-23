@@ -154,7 +154,7 @@
                                     orderButton.classList.add('order-button', 'details-button');
                                     orderButton.textContent = 'Detalhes do Pedido';
                                     orderButton.addEventListener('click', function() {
-                                        window.location.href = "/detalhesPedidos"; 
+                                        window.location.href = `/detalhesPedidos?id=${pedido.id_pedido}`; 
                                     });
                                     
                                     orderHeader.appendChild(orderInfo);
