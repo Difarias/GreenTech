@@ -3,6 +3,7 @@ const router                 = Router();
 const multer                 = require('multer');
 const path                   = require('path');
 const controladorProduto     = require("../controllers/produtoControlador");
+const controladorCategoria   = require("../controllers/categoriaControlador");
 
 // Defina o diretório raiz onde as imagens serão armazenadas no servidor
 const rootDirectory = '/images/produtos/';
@@ -36,7 +37,7 @@ router.post('/', upload.single('imagem_produto'), (req, res) => {
         dataCadastro_produto: req.body.dataCadastro_produto,
         descricao_produto: req.body.descricao_produto,
         id_categoria_TB_CATEGORIAS: req.body.id_categoria_TB_CATEGORIAS,
-        imagem_produto: req.file.path, // Salva o caminho da imagem no servidor
+        imagem_produto: req.file.path.replace(/public[\\\/]/, ''),
         avaliacao_produto:req.body.avaliacao_produto
     };
 
@@ -44,7 +45,6 @@ router.post('/', upload.single('imagem_produto'), (req, res) => {
         .then(ProdutoCriado => res.status(200).json(ProdutoCriado))
         .catch(error => res.status(400).json(error.message));
 });
-
 
 router.put("/:id", (req, res) => {
     const { id } = req.params;
@@ -67,6 +67,20 @@ router.delete("/:id", (req, res) => {
 
 router.get("/inserir", (req, res) => {
     res.render("inserirProduto", { title: "Inserir Novo Produto" });
+});
+
+router.get("/:id", (req, res) => {
+    const categoriaId = req.params.id;
+    const BASE_URL = 'http://localhost:3000/';
+
+    Promise.all([
+        controladorProduto.buscarPorCategoria(categoriaId),
+        controladorCategoria.buscar()
+    ])
+    .then(([produtos, categorias]) => {
+        res.render("produtos", { produtos: produtos, categorias: categorias, categoriaId, BASE_URL });
+    })
+    .catch((error) => res.status(400).json(error.message));
 });
 
 module.exports = router;

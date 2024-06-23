@@ -30,8 +30,9 @@
                 </div>
             </div>
             <div class="cart">
-                <a href="/pagamento" rel="noopener noreferrer">
+                <a id="cart-link" href="#" rel="noopener noreferrer">
                     <img src="../images/cart.svg">
+                    <span id="cart-item-count" class="cart-item-count">0</span> <!-- Contador de itens do carrinho -->
                 </a>
             </div>
             <div class="button">
@@ -53,7 +54,7 @@
         <nav class="category">
             <ul class="nav">
                 <% categorias.forEach(categoria => { %>
-                    <li><a href="/produtos"><%= categoria.nome_categoria %></a></li>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
                 <% }) %>
             </ul>
         </nav>
@@ -117,14 +118,11 @@
         </div>
     </footer>
     <script>
-        document.getElementById("more-info").addEventListener("click", function(event) {
-            event.preventDefault();
-            document.getElementById("technical-specifications").classList.toggle("show");
-        });
+        let cartItems = [];
 
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
-                const username = localStorage.getItem('username');
+                const username = localStorage.getItem('username')?.split(' ')[0];
                 if (username) {
                     const loginButton = document.querySelector('.login-button');
                     const dropbtn = document.querySelector('.dropbtn');
@@ -144,12 +142,50 @@
             });
         }
 
-        function clearLocalStorage() {
-            localStorage.removeItem('username');
-            location.reload();
-        }
+        function clearLocalStorage() {           
+                console.log('Limpando armazenamento local...');
+                localStorage.removeItem('username');
+                localStorage.removeItem('id'); 
+                location.reload();
+            }
+
+            function loadDataFromLocalStorage() {
+                const storedCartItems = localStorage.getItem('cartItems');
+                if (storedCartItems) {
+                    cartItems = JSON.parse(storedCartItems);
+                }
+                updateCartItemCount();
+                updateCartLink();
+            }
+
+            function saveCartItemsToLocalStorage() {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+
+            function updateCartItemCount() {
+                const cartItemCount = document.getElementById('cart-item-count');
+                cartItemCount.innerText = cartItems.length;
+            }
+
+            function updateCartLink() {
+                const cartLink = document.getElementById('cart-link');
+                cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+            }
+
+            // Adicionar ao carrinho
+            const addToCartButton = document.querySelector('.add-to-cart');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', function() {
+                    const productId = 'produto_id'; // Defina aqui o ID do produto a ser adicionado
+                    cartItems.push(productId);
+                    saveCartItemsToLocalStorage();
+                    updateCartItemCount();
+                    updateCartLink();
+                });
+            }
 
         loadUsername();
+        loadDataFromLocalStorage();
     </script>
 </body>
 </html>

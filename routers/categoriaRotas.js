@@ -37,13 +37,13 @@ function renderizarCategorias(req, res, nomePagina) {
         .catch((error) => res.status(400).json(error.message));
 }
 
-function renderizarCategoriasEProdutos(req, res, nomePagina) {
+function renderizarCategoriasEProdutos(req, res, nomePagina, cartItems = []) {
     Promise.all([
         controladorCategoria.buscar(), // Buscar categorias
         controladorProduto.buscar()    // Buscar produtos
     ])
     .then(([categorias, produtos]) => {
-        res.render(nomePagina, { title: nomePagina, categorias, produtos });
+        res.render(nomePagina, { title: nomePagina, categorias, produtos, cartItems });
     })
     .catch((error) => res.status(400).json(error.message));
 }

@@ -5,9 +5,9 @@ class Tabelas {
         this.criarTabelaEnderecos();
         this.criarTabelaCategorias();
         this.criarTabelaProdutos();
-        this.criarTabelaPedidos();
         this.criarTabelaTipoTransacao();
         this.criarTabelaTransacao();
+        this.criarTabelaPedidos();
         this.criarTabelaLog();
         this.criarTabelaProdutosPedidos();
     }
@@ -78,12 +78,13 @@ class Tabelas {
         const sql = `
         CREATE TABLE IF NOT EXISTS TB_PRODUTOS (
             id_produto INT AUTO_INCREMENT PRIMARY KEY,
-            nome_produto VARCHAR(50) NOT NULL,
+            nome_produto VARCHAR(100) NOT NULL,
             preco_produto FLOAT NOT NULL,
             imagem_produto TEXT NOT NULL,
             dataCadastro_produto DATE NOT NULL,
             descricao_produto VARCHAR(500) NOT NULL,
             id_categoria_TB_CATEGORIAS INTEGER,
+            avaliacao_produto INTEGER,
             FOREIGN KEY (id_categoria_TB_CATEGORIAS) REFERENCES TB_CATEGORIAS(id_categoria)
         );
         
@@ -95,29 +96,8 @@ class Tabelas {
             }
             console.log("Tabela TB_PRODUTOS criada com sucesso!");
         });
-    }      
-
-    criarTabelaPedidos() {
-        const sql = `
-        CREATE TABLE IF NOT EXISTS TB_PEDIDOS (
-            id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-            status_pedido INTEGER NOT NULL,
-            valorTotal_pedido FLOAT NOT NULL,
-            data_pedido DATE NOT NULL,
-            id_cliente_TB_CLIENTE INTEGER,
-            FOREIGN KEY (id_cliente_TB_CLIENTE) REFERENCES TB_CLIENTES(id_cliente)
-        );
-        
-        `;
-        this.conexao.query(sql, (error) => {
-            if (error) {
-                console.error("Erro ao criar tabela TB_PEDIDOS:", error.message);
-                return;
-            }
-            console.log("Tabela TB_PEDIDOS criada com sucesso!");
-        });
-    }    
-
+    }  
+    
     criarTabelaTipoTransacao() {
         const sql = `
         CREATE TABLE IF NOT EXISTS TB_TIPOTRANSACAO (
@@ -142,9 +122,7 @@ class Tabelas {
             valor_transacao FLOAT NOT NULL,
             metodoPagamento_transacao VARCHAR(50) NOT NULL,
             id_tipotransacao_TB_TIPOTRANSACAO INTEGER,
-            id_pedido_TB_PEDIDOS INTEGER,
-            FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao),
-            FOREIGN KEY (id_pedido_TB_PEDIDOS) REFERENCES TB_PEDIDOS(id_pedido)
+            FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao)
         );
         
         `;
@@ -154,6 +132,29 @@ class Tabelas {
                 return;
             }
             console.log("Tabela TB_TRANSACAO criada com sucesso!");
+        });
+    }    
+
+    criarTabelaPedidos() {
+        const sql = `
+        CREATE TABLE IF NOT EXISTS TB_PEDIDOS (
+            id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+            status_pedido INTEGER NOT NULL,
+            valorTotal_pedido FLOAT NOT NULL,
+            data_pedido DATE NOT NULL,
+            id_cliente_TB_CLIENTE INTEGER,
+            id_tipotransacao_TB_TIPOTRANSACAO INTEGER,
+            FOREIGN KEY (id_cliente_TB_CLIENTE) REFERENCES TB_CLIENTES(id_cliente),
+            FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao)
+        );
+        
+        `;
+        this.conexao.query(sql, (error) => {
+            if (error) {
+                console.error("Erro ao criar tabela TB_PEDIDOS:", error.message);
+                return;
+            }
+            console.log("Tabela TB_PEDIDOS criada com sucesso!");
         });
     }    
 
