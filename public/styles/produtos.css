@@ -241,7 +241,8 @@ header{
 
 /* Estilos do corpo principal */
 main {
-    margin-top: 130px;
+    background-color: #b7c7e3cc;
+    margin-top: 115px;
     padding: 20px;
 }
 
@@ -252,8 +253,9 @@ main {
 }
 
 .product-listing h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 26px;
+    margin-bottom: 40px;
+    color: rgb(46, 133, 37);
 }
 
 .products {

@@ -72,7 +72,6 @@
                 <% produtos.forEach(produto => { %>
                     <% if (produto.avaliacao_produto === 5 && produtosComCincoEstrelas < 5) { %>
                         <div class="card">
-                            <div class="like"></div>
                             <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>" onclick="redirectToDetails('<%= produto.id_produto %>')">
                             <h4 class="prod-name"><%= produto.nome_produto %></h4>
                             <div class="rating">

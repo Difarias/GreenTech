@@ -1,5 +1,4 @@
 const modeloProduto = require("../models/produtoModelo");
-const modeloCategoria = require("../models/categoriaModelo");
 
 class ProdutoControlador{
     buscar(){
@@ -15,7 +14,6 @@ class ProdutoControlador{
     }
 
     buscarProdutoDetalhes(produtoID){
-        console.log(produtoID);
         return modeloProduto.buscarProdutoDetalhes(produtoID);
     }
     

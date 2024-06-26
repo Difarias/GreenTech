@@ -63,7 +63,6 @@ class ProdutoModelo{
                         resolve(null);
                     }
                 }
-                console.log(resposta);
             });
         });
     }
