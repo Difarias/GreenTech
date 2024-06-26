@@ -30,8 +30,9 @@
                 </div>
             </div>
             <div class="cart">
-                <a href="pagamento" rel="noopener noreferrer">
+                <a id="cart-link" href="#" rel="noopener noreferrer">
                     <img src="./images/cart.svg">
+                    <span id="cart-item-count" class="cart-item-count">0</span> <!-- Contador de itens do carrinho -->
                 </a>
             </div>
             <div class="button">
@@ -75,6 +76,8 @@
     </footer>
 
     <script>
+        let cartItems = [];
+
         document.addEventListener('DOMContentLoaded', () => {
             function loadUsernameAndOrders() {
                 const idCliente = localStorage.getItem('id');
@@ -151,7 +154,7 @@
                                     orderButton.classList.add('order-button', 'details-button');
                                     orderButton.textContent = 'Detalhes do Pedido';
                                     orderButton.addEventListener('click', function() {
-                                        window.location.href = "/detalhesPedidos"; 
+                                        window.location.href = `/detalhesPedidos?id=${pedido.id_pedido}`; 
                                     });
                                     
                                     orderHeader.appendChild(orderInfo);
@@ -172,6 +175,7 @@
                         });
                     }
                 }
+                updateCartItemCount();
             }
 
             function filterOrders() {
@@ -191,18 +195,40 @@
                 });
             }
 
-            loadUsernameAndOrders();
-            filterOrders();
-        });
-
-        function clearLocalStorage() {           
+            function clearLocalStorage() {           
                 console.log('Limpando armazenamento local...');
                 localStorage.removeItem('username');
                 localStorage.removeItem('id'); 
                 location.reload();
-        }
-        
+            }
+
+            function loadDataFromLocalStorage() {
+                const storedCartItems = localStorage.getItem('cartItems');
+                if (storedCartItems) {
+                    cartItems = JSON.parse(storedCartItems);
+                }
+                updateCartItemCount();
+                updateCartLink();
+            }
+
+            function saveCartItemsToLocalStorage() {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+
+            function updateCartItemCount() {
+                const cartItemCount = document.getElementById('cart-item-count');
+                cartItemCount.innerText = cartItems.length;
+            }
+
+            function updateCartLink() {
+                const cartLink = document.getElementById('cart-link');
+                cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+            }
+
+            loadUsernameAndOrders();
+            filterOrders();
+            loadDataFromLocalStorage();
+        });
     </script>
 </body>
 </html>
-

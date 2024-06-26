@@ -1,15 +1,40 @@
 class Tabelas {
     init(conexao) {
         this.conexao = conexao;
-        this.criarTabelaClientes();
-        this.criarTabelaEnderecos();
-        this.criarTabelaCategorias();
-        this.criarTabelaProdutos();
-        this.criarTabelaTipoTransacao();
-        this.criarTabelaTransacao();
-        this.criarTabelaPedidos();
-        this.criarTabelaLog();
-        this.criarTabelaProdutosPedidos();
+        this.checarTabelasExistentes();
+    }
+
+    checarTabelasExistentes() {
+        const tabelas = [
+            { nome: 'TB_CLIENTES', criacao: this.criarTabelaClientes },
+            { nome: 'TB_ENDERECOS', criacao: this.criarTabelaEnderecos },
+            { nome: 'TB_CATEGORIAS', criacao: this.criarTabelaCategorias },
+            { nome: 'TB_PRODUTOS', criacao: this.criarTabelaProdutos },
+            { nome: 'TB_TIPOTRANSACAO', criacao: this.criarTabelaTipoTransacao },
+            { nome: 'TB_TRANSACAO', criacao: this.criarTabelaTransacao },
+            { nome: 'TB_PEDIDOS', criacao: this.criarTabelaPedidos },
+            { nome: 'TB_PRODUTOS_PEDIDOS', criacao: this.criarTabelaProdutosPedidos },
+            { nome: 'TB_LOG', criacao: this.criarTabelaLog }
+        ];
+
+        tabelas.forEach(tabela => {
+            this.verificarETabela(tabela.nome, tabela.criacao.bind(this));
+        });
+    }
+
+    verificarETabela(nomeTabela, criarTabelaFunc) {
+        const sql = `SHOW TABLES LIKE '${nomeTabela}'`;
+
+        this.conexao.query(sql, (error, results) => {
+            if (error) {
+                console.error(`Erro ao verificar existência da tabela ${nomeTabela}:`, error.message);
+                return;
+            }
+
+            if (results.length === 0) {
+                criarTabelaFunc();
+            }
+        });
     }
 
     criarTabelaClientes() {
@@ -28,7 +53,6 @@ class Tabelas {
         this.conexao.query(sql, (error) => {
             if (error) {
                 console.error("Erro ao criar tabela TB_CLIENTES:", error.message);
-
                 return;
             }
             console.log("Tabela TB_CLIENTES criada com sucesso!");
@@ -47,7 +71,6 @@ class Tabelas {
             id_cliente_TB_CLIENTE INTEGER,
             FOREIGN KEY (id_cliente_TB_CLIENTE) REFERENCES TB_CLIENTES(id_cliente)
         );
-        
         `;
         this.conexao.query(sql, (error) => {
             if (error) {
@@ -56,7 +79,7 @@ class Tabelas {
             }
             console.log("Tabela TB_ENDERECOS criada com sucesso!");
         });
-    }  
+    }
 
     criarTabelaCategorias() {
         const sql = `
@@ -87,7 +110,6 @@ class Tabelas {
             avaliacao_produto INTEGER,
             FOREIGN KEY (id_categoria_TB_CATEGORIAS) REFERENCES TB_CATEGORIAS(id_categoria)
         );
-        
         `;
         this.conexao.query(sql, (error) => {
             if (error) {
@@ -96,8 +118,8 @@ class Tabelas {
             }
             console.log("Tabela TB_PRODUTOS criada com sucesso!");
         });
-    }  
-    
+    }
+
     criarTabelaTipoTransacao() {
         const sql = `
         CREATE TABLE IF NOT EXISTS TB_TIPOTRANSACAO (
@@ -124,7 +146,6 @@ class Tabelas {
             id_tipotransacao_TB_TIPOTRANSACAO INTEGER,
             FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao)
         );
-        
         `;
         this.conexao.query(sql, (error) => {
             if (error) {
@@ -133,7 +154,7 @@ class Tabelas {
             }
             console.log("Tabela TB_TRANSACAO criada com sucesso!");
         });
-    }    
+    }
 
     criarTabelaPedidos() {
         const sql = `
@@ -147,7 +168,6 @@ class Tabelas {
             FOREIGN KEY (id_cliente_TB_CLIENTE) REFERENCES TB_CLIENTES(id_cliente),
             FOREIGN KEY (id_tipotransacao_TB_TIPOTRANSACAO) REFERENCES TB_TIPOTRANSACAO(id_tipotransacao)
         );
-        
         `;
         this.conexao.query(sql, (error) => {
             if (error) {
@@ -156,7 +176,7 @@ class Tabelas {
             }
             console.log("Tabela TB_PEDIDOS criada com sucesso!");
         });
-    }    
+    }
 
     criarTabelaProdutosPedidos() {
         const sql = `
@@ -166,7 +186,6 @@ class Tabelas {
             FOREIGN KEY (id_pedido_TB_PEDIDOS) REFERENCES TB_PEDIDOS(id_pedido),
             FOREIGN KEY (id_produto_TB_PRODUTOS) REFERENCES TB_PRODUTOS(id_produto)
         );
-        
         `;
         this.conexao.query(sql, (error) => {
             if (error) {
@@ -193,7 +212,6 @@ class Tabelas {
             console.log("Tabela TB_LOG criada com sucesso!");
         });
     }
-
 }
 
 module.exports = new Tabelas();

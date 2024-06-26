@@ -27,8 +27,9 @@
                 </div>
             </div>
             <div class="cart">
-                <a href="pagamento" rel="noopener noreferrer">
+                <a id="cart-link" href="#" rel="noopener noreferrer">
                     <img src="./images/cart.svg">
+                    <span id="cart-item-count" class="cart-item-count">0</span> <!-- Contador de itens do carrinho -->
                 </a>
             </div>
             <div class="button">
@@ -101,6 +102,8 @@
     </footer>
 
     <script>
+        let cartItems = [];
+
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
                 const username = localStorage.getItem('username')?.split(' ')[0];
@@ -120,22 +123,63 @@
                         });
                     }
                 }
+                updateCartItemCount();
             });
         }
 
         function clearLocalStorage() {
             localStorage.removeItem('username');
+            localStorage.removeItem('cartItems');
             location.reload();
         }
 
+        function loadDataFromLocalStorage() {
+            const storedCartItems = localStorage.getItem('cartItems');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+            }
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        function addToCart(productId, quantity = 1) {
+            for (let i = 0; i < quantity; i++) {
+                cartItems.push(productId);
+            }
+            saveCartItemsToLocalStorage();
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item !== productId);
+            saveCartItemsToLocalStorage();
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        function saveCartItemsToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function updateCartItemCount() {
+            const cartItemCount = document.getElementById('cart-item-count');
+            cartItemCount.innerText = cartItems.length;
+        }
+
+        function updateCartLink() {
+            const cartLink = document.getElementById('cart-link');
+            cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+        }
+
         loadUsername();
+        loadDataFromLocalStorage();
 
         document.addEventListener('DOMContentLoaded', function() {
             const increaseButtons = document.querySelectorAll('.quantity-button.increase');
             const decreaseButtons = document.querySelectorAll('.quantity-button.decrease');
             const deleteButtons = document.querySelectorAll('.delete');
             const totalValueElement = document.getElementById('total-value');
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
             increaseButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -144,11 +188,13 @@
                     const productElement = this.closest('.product');
                     const priceElement = productElement.querySelector('.price');
                     const originalPrice = parseFloat(productElement.getAttribute('data-price'));
+                    const productId = productElement.getAttribute('data-id');
 
                     quantity += 1;
                     quantityElement.textContent = quantity;
                     priceElement.textContent = 'R$ ' + (originalPrice * quantity).toFixed(2);
 
+                    addToCart(productId, 1);
                     updateTotal();
                 });
             });
@@ -160,12 +206,14 @@
                     const productElement = this.closest('.product');
                     const priceElement = productElement.querySelector('.price');
                     const originalPrice = parseFloat(productElement.getAttribute('data-price'));
+                    const productId = productElement.getAttribute('data-id');
 
                     if (quantity > 1) {
                         quantity -= 1;
                         quantityElement.textContent = quantity;
                         priceElement.textContent = 'R$ ' + (originalPrice * quantity).toFixed(2);
 
+                        removeFromCart(productId);
                         updateTotal();
                     }
                 });
@@ -176,20 +224,18 @@
                     e.preventDefault();
                     const productElement = this.closest('.product');
                     const productId = productElement.getAttribute('data-id');
-                    productElement.remove();
+                    const quantityElement = productElement.querySelector('.quantity-value');
+                    const quantity = parseInt(quantityElement.textContent);
 
-                    removeFromCart(productId);
+                    for (let i = 0; i < quantity; i++) {
+                        removeFromCart(productId);
+                    }
+
+                    productElement.remove();
                     updateTotal();
                 });
             });
 
-            function removeFromCart(productId) {
-                cartItems = cartItems.filter(item => item !== productId);
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                const updatedCartItems = JSON.parse(localStorage.getItem('cartItems'));
-                alert(`Item ${productId} removido do carrinho. Itens restantes: ${updatedCartItems.join(', ')}`);
-            }
-            
             function updateTotal() {
                 let total = 0;
 
@@ -210,19 +256,24 @@
                     return;
                 }
 
-                // Remova o símbolo 'R$ ' e converta para float
                 const tipoTransacaoId = selectedPayment.value;
                 const totalValue = parseFloat(totalValueElement.textContent.replace('R$ ', ''));
-               
+
+                const produtos = Array.from(document.querySelectorAll('.product')).flatMap(product => {
+                    const id_produto = product.getAttribute('data-id');
+                    const quantity = parseInt(product.querySelector('.quantity-value').textContent);
+                    return Array(quantity).fill({ id_produto });
+                });
+
                 const pedido = {
                     status_pedido: 1, //aguardando
                     valorTotal_pedido: totalValue,
                     data_pedido: new Date().toISOString().slice(0, 10),
                     id_cliente_TB_CLIENTE: parseInt(localStorage.getItem('id')),
-                    id_tipotransacao_TB_TIPOTRANSACAO: tipoTransacaoId // Assumindo que o valor é uma string em caixa alta
+                    id_tipotransacao_TB_TIPOTRANSACAO: tipoTransacaoId,
+                    produtos: produtos
                 };
 
-                // Enviar pedido para o backend
                 fetch('/pagamento/finalizar', {
                     method: 'POST',
                     headers: {
@@ -239,15 +290,14 @@
                 .then(data => {
                     console.log('Pedido criado com sucesso:', data);
                     alert('Pedido criado com sucesso!');
-                    window.location.href = '/pedidos'; // Redirecionar para a página de pedidos após o sucesso
+                    localStorage.removeItem('cartItems');
+                    window.location.href = '/pedidos';
                 })
                 .catch(error => {
                     console.error('Erro ao criar pedido:', error);
                     alert('Erro ao criar pedido. Tente novamente.');
                 });
             });
-
-             
         });
     </script>
 </body>

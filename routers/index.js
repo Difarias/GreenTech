@@ -46,11 +46,17 @@ module.exports = (app, express) => {
         rotasCategoria.renderizarCategorias(req, res, 'detalhesPedidos');
     });
 
+    app.get('/produtos/detalhesProdutos', (req, res) => {
+        const { id } = req.query; // Obtém o ID do produto da query string
+        rotasProduto.renderizarDetalhesProduto(req, res, 'detalhesProdutos', id);
+    });
+    
+
     // Use os middlewares corretos
     app.use('/categorias', rotasCategoria.router);
     app.use('/enderecos', rotasEndereco);
     app.use('/clientes', rotasCliente);
-    app.use('/produtos', rotasProduto);
+    app.use('/produtos', rotasProduto.router);
     app.use('/pagamento', rotasPagamento.router);
     app.use('/pedidos', rotasPedido);
     app.use('/tipos-transacao', rotasTipoTransacao);

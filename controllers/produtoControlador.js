@@ -1,5 +1,4 @@
 const modeloProduto = require("../models/produtoModelo");
-const modeloCategoria = require("../models/categoriaModelo");
 
 class ProdutoControlador{
     buscar(){
@@ -12,6 +11,10 @@ class ProdutoControlador{
 
     buscarPorIds(listaProdutos =[]){
         return modeloProduto.buscarPorIds(listaProdutos);
+    }
+
+    buscarProdutoDetalhes(produtoID){
+        return modeloProduto.buscarProdutoDetalhes(produtoID);
     }
     
     criar(novoProduto){

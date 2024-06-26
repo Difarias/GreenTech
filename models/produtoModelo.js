@@ -46,6 +46,27 @@ class ProdutoModelo{
         });
     }
 
+    buscarProdutoDetalhes(id) {
+        const sql = "SELECT * FROM TB_PRODUTOS WHERE id_produto = ?";
+
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [id], (error, resposta) => {
+                if (error) {
+                    console.log(`Erro ao buscar produto pelo ID ${id}`);
+                    reject(error);
+                } else {
+                    if (resposta.length > 0) {
+                        console.log(`Sucesso ao buscar produto pelo ID ${id}`);
+                        resolve(resposta[0]);
+                    } else {
+                        console.log(`Produto com ID ${id} não encontrado`);
+                        resolve(null);
+                    }
+                }
+            });
+        });
+    }
+
     criar(novoProduto) {
         const sql = "INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
