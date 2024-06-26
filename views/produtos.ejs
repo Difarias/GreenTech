@@ -67,7 +67,7 @@
         <% if (produtos.length > 0) { %>
           <% produtos.forEach(produto => { %>
             <div class="product-card">
-              <img class="product" src="<%= `${BASE_URL}${produto.imagem_produto}` %>">
+              <img class="product" src="<%= `${BASE_URL}${produto.imagem_produto}` %>" onclick="redirectToDetails('<%= produto.id_produto %>')">
               <h3><%= produto.nome_produto %></h3>
               <div class="stars">
                 <% for (let i = 0; i < 5; i++) { %>
@@ -90,6 +90,7 @@
   </main>
   
   <script>
+    
     document.addEventListener('DOMContentLoaded', function() {
         let cartItems = [];
 
@@ -164,6 +165,11 @@
             });
         });
     });
+
+    function redirectToDetails(productId) {
+            window.location.href = `/detalhesProdutos?id=${productId}`;
+    }
+
   </script>
 </body>
 </html>

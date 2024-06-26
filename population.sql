@@ -4,6 +4,12 @@ insert into TB_CATEGORIAS (nome_categoria) values ('Tecnologia');
 insert into TB_CATEGORIAS (nome_categoria) values ('Rural');
 insert into TB_CATEGORIAS (nome_categoria) values ('Utensílios');
 
+------------------- TB_TIPOTRANSACAO  -----------------------------
+insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('Cartão de Crédito');
+insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('Cartão de Débito');
+insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('PIX');
+insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('Boleto');
+
 ------------------- TB_PRODUTOS  -----------------------------
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
 VALUES ('EcoCell', 200.0, 'images/produtos/bateria1.webp', '2024-01-01', 'Bateria de longa duração, ideal para reduzir o desperdício de pilhas descartáveis e promover um consumo consciente de energia.', 2, 5);

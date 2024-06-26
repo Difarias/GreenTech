@@ -51,7 +51,9 @@
         </div>
         <nav class="category">
             <ul class="nav">
-                <!-- Aqui serão inseridas as categorias dinamicamente -->
+                <% categorias.forEach(categoria => { %>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
+                <% }) %>
             </ul>
         </nav>
     </header>
@@ -197,7 +199,14 @@
                         orderItemsContainer.innerHTML = '';
 
                         if (data.produtos && data.produtos.length > 0) {
-                            data.produtos.forEach(item => {
+                            // Agrupar produtos por id_produto e somar quantidades
+                            const productQuantities = data.produtos.reduce((acc, item) => {
+                                acc[item.id_produto] = acc[item.id_produto] || { ...item, quantidade: 0 };
+                                acc[item.id_produto].quantidade += 1;
+                                return acc;
+                            }, {});
+
+                            Object.values(productQuantities).forEach(item => {
                                 const itemDiv = document.createElement('div');
                                 itemDiv.classList.add('item');
 
@@ -212,7 +221,8 @@
                                 itemDetails.classList.add('item-details');
                                 itemDetails.innerHTML = `
                                     <p><strong>Produto:</strong> ${item.nome_produto}</p>
-                                    <p><strong>Preço:</strong> R$ ${item.preco_produto.toFixed(2)}</p>
+                                    <p><strong>Quantidade:</strong> ${item.quantidade}</p>
+                                    <p><strong>Preço:</strong> R$ ${(item.preco_produto * item.quantidade).toFixed(2)}</p>
                                 `;
                                 itemDiv.appendChild(itemDetails);
 

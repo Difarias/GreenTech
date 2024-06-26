@@ -10,7 +10,7 @@
   <title>Detalhes do Produto</title>
 </head>
 
-<body> 
+<body>
     <header>
         <div class="header">
             <div class="logo">
@@ -64,34 +64,31 @@
         <div class="product-container">
             <div class="product-left">
                 <div class="product-name-category">
-                    <h2 class="product-name">Irrigador Rural</h2>
-                    <span class="product-category">Equipamento Rural</span>
+                    <h2 class="product-name" id="produto-nome"></h2>
+                    <span class="product-category" id="produto-categoria"></span>
                 </div>
                 <div class="product-image">
-                    <img src="../images/irrigacao.jpg" alt="Imagem do Produto">
+                    <img src="" alt="Imagem do Produto" id="produto-imagem">
                 </div>
                 <div class="product-description">
                     <p>Avaliações:</p>
-                    <div class="rating">
-                        &#9733
-                        &#9733
-                        &#9733
-                        &#9734
-                        &#9734
+                    <div class="rating" id="produto-avaliacao">
+                        <!-- Avaliações serão preenchidas dinamicamente -->
                     </div>
                     <p>Descrição:</p>
-                    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem consequatur laborum ducimus quos vitae. Natus veritatis eius enim repellendus in sed a delectus minima cumque necessitatibus! Alias corrupti atque obcaecati? ipsum dolor sit amet consectetur adipisicing elit...</h4>
+                    <h4 id="produto-descricao">
+                        <!-- Descrição será preenchida dinamicamente -->
+                    </h4>
                     
                     <p>Especificações Técnicas:</p>
-                    <h4>Lorem ipsum dolor sit amet </h4>
-                    <h4>adipisicing elit. Officia odio veritatis</h4>
-                    <h4>nisi, debitis ratione voluptates distinctio</h4>
-                    <h4>unde est, voluptas possimus eligendi quia?</h4>
+                    <div id="produto-especificacoes">
+                        <!-- Especificações serão preenchidas dinamicamente -->
+                    </div>
                 </div>
             </div>
             <div class="product-right">
                 <div class="product-details">
-                    <p class="product-price">R$ 29999,90</p>
+                    <p class="product-price" id="produto-preco"></p>
                     <p class="product-stock">Em estoque</p>
                     <div class="product-quant">
                         <p class="product-number">Quantidade:</p>
@@ -143,7 +140,6 @@
         }
 
         function clearLocalStorage() {           
-                console.log('Limpando armazenamento local...');
                 localStorage.removeItem('username');
                 localStorage.removeItem('id'); 
                 location.reload();
@@ -183,6 +179,64 @@
                     updateCartLink();
                 });
             }
+
+        // Função para carregar os detalhes do produto dinamicamente
+        document.addEventListener("DOMContentLoaded", function() {
+            // Extrair o ID do produto da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const nomeCategoria = ''
+
+            // Construir a URL para a requisição fetch
+            const url = `http://localhost:3000/produtos/detalhesProdutos?id=${productId}`;
+
+            // Realizar a requisição fetch
+            fetch(url)
+                .then(response => {
+                    // Verificar se o tipo de conteúdo é JSON
+                    const contentType = response.headers.get("content-type");
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    } else if (!contentType || !contentType.includes("application/json")) {
+                        throw new TypeError(`Expected JSON, but received ${contentType}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const categorias = {
+                        1: 'Todos',
+                        2: 'Tecnologia',
+                        3: 'Rural',
+                        4: 'Utensílios'
+                        // Adicione mais conforme necessário
+                    };
+                   
+                    // Preencher os elementos HTML com os dados do produto recebidos
+                    document.getElementById('produto-nome').textContent = data.produto.nome_produto;
+                    const categoriaId = data.produto.id_categoria_TB_CATEGORIAS;
+                    document.getElementById('produto-categoria').textContent = categorias[categoriaId];
+                    document.getElementById('produto-imagem').src = `../${data.produto.imagem_produto}`;
+                    document.getElementById('produto-preco').textContent = `R$ ${data.produto.preco_produto.toFixed(2)}`;
+                    
+                    // Preencher avaliações
+                    const ratingElement = document.getElementById('produto-avaliacao');
+                    ratingElement.innerHTML = '';
+                    for (let i = 0; i < data.produto.avaliacao_produto; i++) {
+                        ratingElement.innerHTML += '&#9733 ';
+                    }
+                    for (let i = data.produto.avaliacao_produto; i < 5; i++) {
+                        ratingElement.innerHTML += '&#9734 ';
+                    }
+
+                    // Preencher descrição
+                    document.getElementById('produto-descricao').textContent = data.produto.descricao_produto;
+                    
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar detalhes do produto:', error);
+                    alert(`Erro ao carregar detalhes do produto: ${error}`);
+                });
+        });
 
         loadUsername();
         loadDataFromLocalStorage();

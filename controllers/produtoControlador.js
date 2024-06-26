@@ -13,6 +13,11 @@ class ProdutoControlador{
     buscarPorIds(listaProdutos =[]){
         return modeloProduto.buscarPorIds(listaProdutos);
     }
+
+    buscarProdutoDetalhes(produtoID){
+        console.log(produtoID);
+        return modeloProduto.buscarProdutoDetalhes(produtoID);
+    }
     
     criar(novoProduto){
         return modeloProduto.criar(novoProduto);

@@ -73,7 +73,7 @@
                     <% if (produto.avaliacao_produto === 5 && produtosComCincoEstrelas < 5) { %>
                         <div class="card">
                             <div class="like"></div>
-                            <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                            <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>" onclick="redirectToDetails('<%= produto.id_produto %>')">
                             <h4 class="prod-name"><%= produto.nome_produto %></h4>
                             <div class="rating">
                                 <% for (let i = 0; i < produto.avaliacao_produto; i++) { %>
@@ -116,7 +116,7 @@
                     <% produtos.forEach(produto => { %>
                         <% if (produto.avaliacao_produto !== 5 && produtosSemCincoEstrelas < 5) { %>
                             <div class="card2">
-                                <img class="product" src="<%= produto.imagem_produto %>">
+                                <img class="product" src="<%= produto.imagem_produto %>" onclick="redirectToDetails('<%= produto.id_produto %>')">
                                 <h4 class="prod-name"><%= produto.nome_produto %></h4>
                                 <div class="rating">
                                     <% for (let i = 0; i < produto.avaliacao_produto; i++) { %>
@@ -162,7 +162,7 @@
                     <% produtos.forEach(produto => { %>
                         <% if (produto.id_categoria_TB_CATEGORIAS === 2 && produtosCategoriaDois < 5) { %>
                             <div class="card2">
-                                <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>">
+                                <img class="product" src="<%= produto.imagem_produto.replace('public/', '') %>" onclick="redirectToDetails('<%= produto.id_produto %>')">
                                 <h4 class="prod-name"><%= produto.nome_produto %></h4>
                                 <div class="price">
                                     <h5>R$ <%= produto.preco_produto %></h5>
@@ -252,6 +252,10 @@
         function updateCartLink() {
             const cartLink = document.getElementById('cart-link');
             cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+        }
+
+        function redirectToDetails(productId) {
+            window.location.href = `/detalhesProdutos?id=${productId}`;
         }
     
         loadUsername();
