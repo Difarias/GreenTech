@@ -66,7 +66,9 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get("/inserir", (req, res) => {
-    res.render("inserirProduto", { title: "Inserir Novo Produto" });
+    controladorCategoria.buscar()
+        .then((categorias) => res.render("inserirProduto", { title: "Inserir Novo Produto" , categorias}))
+        .catch((error) => res.status(400).json(error.message));
 });
 
 router.get("/:id", (req, res) => {

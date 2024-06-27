@@ -45,6 +45,7 @@
                 <button class="dropbtn">Login</button>
                 <div class="dropdown-content">
                     <a id="meus-pedidos" href="/pedidos">Meus Pedidos</a>
+                    <a id="inserir-produto" href="inserir">Adicionar Produto</a>
                     <a href="#" onclick="clearLocalStorage()">Sair</a>
                 </div>
             </div>
@@ -160,7 +161,6 @@
         addToCartButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const productId = this.getAttribute('data-product-id');
-                alert(productId);
                 addToCart(productId);
             });
         });

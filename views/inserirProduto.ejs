@@ -43,6 +43,7 @@
                         <button class="dropbtn">Login</button>
                         <div class="dropdown-content">
                             <a id="meus-pedidos" href="/pedidos">Meus Pedidos</a>
+                            <a id="inserir-produto" href="produtos/inserir">Adicionar Produto</a>
                             <a href="#" onclick="clearLocalStorage()">Sair</a>
                         </div>
                     </div>
@@ -50,9 +51,11 @@
             </div>
         </div>
         <nav class="category">
-          <ul class="nav">
-            <!-- categorias. -->
-          </ul>
+            <ul class="nav">
+                <% categorias.forEach(categoria => { %>
+                    <li><a href="/produtos/<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></a></li>
+                <% }) %>
+            </ul>
         </nav>
     </header>
 
@@ -83,7 +86,19 @@
                     </div>
                     <div class="input-group">
                         <i class="fas fa-list"></i>
-                        <input type="number" name="id_categoria_TB_CATEGORIAS" id="id_categoria_TB_CATEGORIAS" placeholder="ID da Categoria" required>
+                        <label for="id_categoria_TB_CATEGORIAS">Categoria:</label>
+                        <div class="dropdown">
+                            <select name="id_categoria_TB_CATEGORIAS" id="id_categoria_TB_CATEGORIAS" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <% categorias.forEach(categoria => { %>
+                                    <option value="<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="nomeCategoriaSelecionada"></span>
                     </div>
                     <div class="input-group" id="ap1">
                         <label for="avaliacao_produto">Avaliação do Produto:</label><br>
@@ -121,5 +136,86 @@
             <p>Desenvolvido por Diêgo Farias e Isaias Mendes</p>
         </div>
     </footer>
+    <script>
+        let cartItems = [];
+    
+        function loadDataFromLocalStorage() {
+            const storedCartItems = localStorage.getItem('cartItems');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+            }
+            updateCartItemCount();
+            updateCartLink(); // Chama a função para garantir que o link do carrinho esteja atualizado ao carregar a página
+        }
+
+        function loadUsername() {
+            document.addEventListener("DOMContentLoaded", function() {
+                const username = localStorage.getItem('username')?.split(' ')[0];
+                if (username) {
+                    const loginButton = document.querySelector('.login-button');
+                    const dropbtn = document.querySelector('.dropbtn');
+                    const logoutMenu = document.querySelector('.logout-menu');
+                    
+                    if (loginButton && dropbtn && logoutMenu) {
+                        dropbtn.textContent = username;
+                        logoutMenu.style.display = 'block';
+                        loginButton.style.display = 'none';
+                        
+                        dropbtn.addEventListener('click', function() {
+                            const dropdownContent = document.querySelector('.dropdown-content');
+                            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+                        });
+                    }
+                }
+            });
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('cartItems');
+            location.reload();
+        }
+    
+        function addToCart(productId) {
+            cartItems.push(productId);
+            saveCartItemsToLocalStorage();
+            updateCartItemCount();
+            updateCartLink();
+        }
+
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item !== productId);
+            saveCartItemsToLocalStorage();
+            updateCartItemCount();
+            updateCartLink();
+        }
+    
+        function saveCartItemsToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+    
+        function updateCartItemCount() {
+            const cartItemCount = document.getElementById('cart-item-count');
+            cartItemCount.innerText = cartItems.length;
+        }
+    
+        function updateCartLink() {
+            const cartLink = document.getElementById('cart-link');
+            cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const categoriaSelect = document.getElementById('id_categoria_TB_CATEGORIAS');
+            const nomeCategoriaSelecionada = document.getElementById('nomeCategoriaSelecionada');
+
+            categoriaSelect.addEventListener('change', function() {
+                const selectedOption = categoriaSelect.options[categoriaSelect.selectedIndex];
+                nomeCategoriaSelecionada.textContent = selectedOption.text;
+            });
+        });
+
+        loadUsername();
+        loadDataFromLocalStorage();
+    </script>
 </body>
 </html>

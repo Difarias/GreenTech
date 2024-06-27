@@ -198,6 +198,16 @@ header{
     color: blue;
 }
 
+.logout-menu .dropdown-content #inserir-produto:hover {
+    background-color: #f1f1f1;
+    color: rgb(41, 132, 10);
+}
+
+.logout-menu .dropdown-content #inserir-produto:hover {
+    background-color: #f1f1f1;
+    color: rgb(41, 132, 10);
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -205,8 +215,6 @@ header{
 .dropdown:hover .dropbtn {
     background-color: #0056b3;
 }
-
-
 
 .category {
     width: 100%;

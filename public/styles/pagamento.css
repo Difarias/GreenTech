@@ -198,6 +198,11 @@ header{
     color: blue;
 }
 
+.logout-menu .dropdown-content #inserir-produto:hover {
+    background-color: #f1f1f1;
+    color: rgb(41, 132, 10);
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
