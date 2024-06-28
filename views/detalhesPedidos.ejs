@@ -282,6 +282,12 @@
                 console.error('ID do pedido não encontrado na URL');
             }
         });
+
+        function clearLocalStorage() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('cartItems');
+            location.reload();
+        }
     </script>
 </body>
 </html>

@@ -166,6 +166,12 @@
         });
     });
 
+    function clearLocalStorage() {
+        localStorage.removeItem('username');
+        localStorage.removeItem('cartItems');
+        location.reload();
+    }
+
     function redirectToDetails(productId) {
             window.location.href = `/detalhesProdutos?id=${productId}`;
     }

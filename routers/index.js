@@ -50,7 +50,6 @@ module.exports = (app, express) => {
         const { id } = req.query; // Obtém o ID do produto da query string
         rotasProduto.renderizarDetalhesProduto(req, res, 'detalhesProdutos', id);
     });
-    
 
     // Use os middlewares corretos
     app.use('/categorias', rotasCategoria.router);

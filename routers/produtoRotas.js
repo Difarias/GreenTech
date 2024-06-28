@@ -87,7 +87,7 @@ router.get("/:id", (req, res) => {
 
 router.get('/detalhesProdutos', async (req, res) => {
     const { id } = req.query; // Obtém o ID do produto da query string
-
+    console.log(id);
     try {
         // Busca o produto pelo ID usando o controlador
         const produto = await controladorProduto.buscarProdutoDetalhes(id);

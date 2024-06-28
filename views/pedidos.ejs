@@ -230,6 +230,12 @@
             filterOrders();
             loadDataFromLocalStorage();
         });
+
+        function clearLocalStorage() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('cartItems');
+            location.reload();
+        }
     </script>
 </body>
 </html>

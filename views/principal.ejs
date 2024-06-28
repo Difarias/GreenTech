@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html  >
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v5.0.29, mobirise.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
-  <meta name="description" content="">
-  <link rel="stylesheet" href="../styles/principal.css">
-  <title>Home</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/principal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body> 
+<body>
     <header>
         <div class="header">
             <div class="logo">
@@ -26,9 +23,10 @@
             </div>
             <div class="searcher">
                 <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Buscar...">
+                    <input type="text" class="search-input" placeholder="Buscar..." oninput="handleSearch(this.value)">
                     <img class="search-icon" src="../images/search1.svg" alt="Ícone de Pesquisa">
                 </div>
+                <div id="search-results" class="search-results"></div> <!-- Pop-up de resultados -->
             </div>
             <div class="cart" id="cart-icon">
                 <a id="cart-link" href="#" rel="noopener noreferrer">
@@ -92,7 +90,6 @@
                     <% } %>
                 <% }) %>
             </div>
-           
         </div>
             
         <div class="container2">
@@ -188,16 +185,19 @@
     </footer>
     <script>
         let cartItems = [];
-    
+        let produtos = [];
+
+        // Carrega os dados do LocalStorage ao carregar a página
         function loadDataFromLocalStorage() {
             const storedCartItems = localStorage.getItem('cartItems');
             if (storedCartItems) {
                 cartItems = JSON.parse(storedCartItems);
             }
             updateCartItemCount();
-            updateCartLink(); // Chama a função para garantir que o link do carrinho esteja atualizado ao carregar a página
+            updateCartLink(); // Atualiza o link do carrinho ao carregar a página
         }
-    
+
+        // Carrega o nome de usuário ao carregar a página
         function loadUsername() {
             document.addEventListener("DOMContentLoaded", function() {
                 const username = localStorage.getItem('username')?.split(' ')[0];
@@ -219,13 +219,15 @@
                 }
             });
         }
-    
+
+        // Limpa todos os dados do LocalStorage
         function clearLocalStorage() {
             localStorage.removeItem('username');
             localStorage.removeItem('cartItems');
-            location.reload();
+            location.reload(); // Recarrega a página após limpar os dados
         }
-    
+
+        // Adiciona um produto ao carrinho
         function addToCart(productId) {
             cartItems.push(productId);
             saveCartItemsToLocalStorage();
@@ -233,35 +235,38 @@
             updateCartLink();
         }
 
+        // Remove um produto do carrinho
         function removeFromCart(productId) {
             cartItems = cartItems.filter(item => item !== productId);
             saveCartItemsToLocalStorage();
             updateCartItemCount();
             updateCartLink();
         }
-    
+
+        // Salva os itens do carrinho no LocalStorage
         function saveCartItemsToLocalStorage() {
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
-    
+
+        // Atualiza o contador de itens no carrinho
         function updateCartItemCount() {
             const cartItemCount = document.getElementById('cart-item-count');
             cartItemCount.innerText = cartItems.length;
         }
-    
+
+        // Atualiza o link do carrinho com os produtos selecionados
         function updateCartLink() {
             const cartLink = document.getElementById('cart-link');
             cartLink.href = `/pagamento?produtos=${JSON.stringify(cartItems)}`;
         }
 
+        // Redireciona para a página de detalhes do produto
         function redirectToDetails(productId) {
             window.location.href = `/detalhesProdutos?id=${productId}`;
         }
-    
-        loadUsername();
-        loadDataFromLocalStorage();
+
+        loadUsername(); // Carrega o nome de usuário ao iniciar a página
+        loadDataFromLocalStorage(); // Carrega os dados do LocalStorage ao iniciar a página
     </script>
-    
-    
 </body>
 </html>
