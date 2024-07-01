@@ -85,7 +85,6 @@
                         <textarea name="descricao_produto" id="descricao_produto" placeholder="Descrição do Produto" required></textarea>
                     </div>
                     <div class="input-group">
-                       
                         <label for="id_categoria_TB_CATEGORIAS">Categoria:</label>
                         <div class="dropdown">
                             <select name="id_categoria_TB_CATEGORIAS" id="id_categoria_TB_CATEGORIAS" required>
@@ -212,6 +211,28 @@
 
         loadUsername();
         loadDataFromLocalStorage();
+
+        document.getElementById('formProduto').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio normal do formulário
+
+            const formData = new FormData(this);
+
+            fetch('/produtos', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    // Trate o erro aqui
+                    console.error('Erro ao inserir produto');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar o formulário:', error);
+            });
+        });
     </script>
 </body>
 </html>

@@ -9,34 +9,34 @@ insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('PIX');
 insert into TB_TIPOTRANSACAO(nome_tipotransacao) values ('Boleto');
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('EcoCell', 200.0, 'images/produtos/bateria1.webp', '2024-01-01', 'Bateria de longa duração, ideal para reduzir o desperdício de pilhas descartáveis e promover um consumo consciente de energia.', 2, 5);
+VALUES ('Bateria Sustentável', 200.0, 'images/produtos/bateria1.webp', '2024-01-01', 'Bateria de longa duração, ideal para reduzir o desperdício de pilhas descartáveis e promover um consumo consciente de energia.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('EcoCharge', 220.0, 'images/produtos/bateria2.webp', '2024-01-01', 'Bateria recarregável, projetada para reduzir o desperdício de pilhas descartáveis e oferecer uma alternativa sustentável para o uso diário.', 2, 4);
+VALUES ('Bateria Eco', 220.0, 'images/produtos/bateria2.webp', '2024-01-01', 'Bateria recarregável, projetada para reduzir o desperdício de pilhas descartáveis e oferecer uma alternativa sustentável para o uso diário.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('EcoShower', 100.0, 'images/produtos/chuveiro1.webp', '2024-01-01', 'Chuveiro de alta qualidade, projetado para proporcionar conforto e eficiência, ideal para um banho sustentável.', 1, 5);
+VALUES ('Chuveiro Ecológico', 100.0, 'images/produtos/chuveiro1.webp', '2024-01-01', 'Chuveiro de alta qualidade, projetado para proporcionar conforto e eficiência, ideal para um banho sustentável.', 1, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('EcoStream', 150.0, 'images/produtos/chuveiro2.webp', '2024-01-01', 'Chuveiro com diversas funções para proporcionar um banho personalizado e eficiente, contribuindo para o consumo consciente de água.', 1, 4);
+VALUES ('Chuveiro Inteligente', 150.0, 'images/produtos/chuveiro2.webp', '2024-01-01', 'Chuveiro com diversas funções para proporcionar um banho personalizado e eficiente, contribuindo para o consumo consciente de água.', 1, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('SolarMax', 1000.0, 'images/produtos/painelsolar1.webp', '2024-01-01', 'Painel solar de alta eficiência, ideal para captar energia solar de forma sustentável e econômica.', 2, 5);
+VALUES ('Painel Solar TECH', 1000.0, 'images/produtos/painelsolar1.webp', '2024-01-01', 'Painel solar de alta eficiência, ideal para captar energia solar de forma sustentável e econômica.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('SolarTech', 1200.0, 'images/produtos/painelsolar2.webp', '2024-01-01', 'Painel solar de longa durabilidade, projetado para captar energia solar de forma eficiente e sustentável.', 2, 4);
+VALUES ('Eco Luz', 1200.0, 'images/produtos/painelsolar2.webp', '2024-01-01', 'Painel solar de longa durabilidade, projetado para captar energia solar de forma eficiente e sustentável.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('EcoTractor', 30000.0, 'images/produtos/trator1.webp', '2024-01-01', 'Trator robusto e eficiente para agricultura, projetado para minimizar o impacto ambiental e aumentar a produtividade.', 3, 5);
+VALUES ('Trator Eco', 30000.0, 'images/produtos/trator1.webp', '2024-01-01', 'Trator robusto e eficiente para agricultura, projetado para minimizar o impacto ambiental e aumentar a produtividade.', 3, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('SmartTractor', 32000.0, 'images/produtos/trator2.webp', '2024-01-01', 'Trator equipado com GPS para melhorar a precisão e eficiência nas atividades agrícolas, proporcionando sustentabilidade e produtividade.', 3, 4);
+VALUES ('Trator Inteligente', 32000.0, 'images/produtos/trator2.webp', '2024-01-01', 'Trator equipado com GPS para melhorar a precisão e eficiência nas atividades agrícolas, proporcionando sustentabilidade e produtividade.', 3, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('AutoPilotTractor', 34000.0, 'images/produtos/trator3.webp', '2024-01-01', 'Trator com piloto automático para operações agrícolas precisas e eficientes, contribuindo para uma agricultura mais sustentável e econômica.', 3, 5);
+VALUES ('Trator Automático', 34000.0, 'images/produtos/trator3.webp', '2024-01-01', 'Trator com piloto automático para operações agrícolas precisas e eficientes, contribuindo para uma agricultura mais sustentável e econômica.', 3, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Trator 4', 36000.0, 'images/produtos/trator4.webp', '2024-01-01', 'Trator com alta capacidade de carga, ideal para trabalhos pesados na agricultura, proporcionando eficiência e durabilidade.', 3, 4);
+VALUES ('Trator 4x4', 36000.0, 'images/produtos/trator4.webp', '2024-01-01', 'Trator com alta capacidade de carga, ideal para trabalhos pesados na agricultura, proporcionando eficiência e durabilidade.', 3, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
 VALUES ('Turbina Eólica V-Power', 5000.0, 'images/produtos/turbinaeolicaresidencial1.webp', '2024-01-01', 'Turbina eólica projetada para uso residencial, proporcionando energia limpa e renovável.', 1, 5);
@@ -57,22 +57,22 @@ INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadast
 VALUES ('Janela Inteligente', 500.0, 'images/produtos/janelainteligente.webp', '2024-01-01', 'Janela inteligente com controle remoto, ideal para automação residencial e eficiência energética.', 1, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Interruptor 1', 50.0, 'images/produtos/interruptor1.webp', '2024-01-01', 'Interruptor inteligente, proporciona controle de iluminação avançado e economia de energia.', 2, 5);
+VALUES ('Interruptor LED', 50.0, 'images/produtos/interruptor1.webp', '2024-01-01', 'Interruptor inteligente, proporciona controle de iluminação avançado e economia de energia.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Interruptor 2', 55.0, 'images/produtos/interruptor2.webp', '2024-01-01', 'Interruptor com sensor integrado, facilita o controle automático de iluminação.', 2, 4);
+VALUES ('Interruptor TECH', 55.0, 'images/produtos/interruptor2.webp', '2024-01-01', 'Interruptor com sensor integrado, facilita o controle automático de iluminação.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Lâmpada LED 1', 20.0, 'images/produtos/lampadaled1.webp', '2024-01-01', 'Lâmpada LED econômica, proporciona economia de energia e longa vida útil.', 2, 5);
+VALUES ('Lâmpada LED', 20.0, 'images/produtos/lampadaled1.webp', '2024-01-01', 'Lâmpada LED econômica, proporciona economia de energia e longa vida útil.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Lâmpada LED 2', 25.0, 'images/produtos/lampadaled2.webp', '2024-01-01', 'Lâmpada LED de alta potência, oferece iluminação intensa e eficiente.', 2, 4);
+VALUES ('Lâmpada TECH', 25.0, 'images/produtos/lampadaled2.webp', '2024-01-01', 'Lâmpada LED de alta potência, oferece iluminação intensa e eficiente.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Lâmpada LED 3', 22.0, 'images/produtos/lampadaled3.webp', '2024-01-01', 'Lâmpada LED durável, ideal para uso residencial e comercial.', 2, 5);
+VALUES ('Lâmpada Reluzente', 22.0, 'images/produtos/lampadaled3.webp', '2024-01-01', 'Lâmpada LED durável, ideal para uso residencial e comercial.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
-VALUES ('Lâmpada LED 4', 18.0, 'images/produtos/lampadaled4.webp', '2024-01-01', 'Lâmpada LED de baixo consumo, proporciona economia de energia e sustentabilidade.', 2, 4);
+VALUES ('Lâmpada Inteligente', 18.0, 'images/produtos/lampadaled4.webp', '2024-01-01', 'Lâmpada LED de baixo consumo, proporciona economia de energia e sustentabilidade.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto) 
 VALUES ('Luminária Lunar', 19.0, 'images/produtos/lampadaled5.webp', '2024-01-01', 'Lâmpada LED inspirada na luz da lua, proporciona uma iluminação suave e relaxante.', 2, 5);
@@ -108,7 +108,7 @@ INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadast
 VALUES ('Bateria FastCharge', 300.0, 'images/produtos/bateria6.webp', '2024-01-01', 'Bateria com tecnologia de carregamento rápido para uso eficiente.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Carregador Blitz', 20.0, 'images/produtos/carregador1.webp', '2024-01-01', 'Carregador rápido que proporciona carga rápida e eficiente.', 2, 5);
+VALUES ('Carregador Portátil', 20.0, 'images/produtos/carregador1.webp', '2024-01-01', 'Carregador rápido que proporciona carga rápida e eficiente.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
 VALUES ('Carregador Swift', 25.0, 'images/produtos/carregador2.webp', '2024-01-01', 'Carregador USB-C compacto e versátil para dispositivos modernos.', 2, 4);
@@ -117,37 +117,37 @@ INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadast
 VALUES ('Carregador Wave', 30.0, 'images/produtos/carregador3.webp', '2024-01-01', 'Carregador sem fio que proporciona conveniência e liberdade de movimento.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Carregador Solaris', 35.0, 'images/produtos/carregador4.webp', '2024-01-01', 'Carregador solar sustentável que utiliza energia solar para recarga.', 2, 4);
+VALUES ('Carregador Solares', 35.0, 'images/produtos/carregador4.webp', '2024-01-01', 'Carregador solar sustentável que utiliza energia solar para recarga.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada Explorer', 50.0, 'images/produtos/lampadasolar1.webp', '2024-01-01', 'Lâmpada solar para áreas externas que oferece iluminação eficiente e sustentável.', 2, 5);
+VALUES ('Lâmpada Essencial', 50.0, 'images/produtos/lampadasolar1.webp', '2024-01-01', 'Lâmpada solar para áreas externas que oferece iluminação eficiente e sustentável.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada Sentinel', 55.0, 'images/produtos/lampadasolar2.webp', '2024-01-01', 'Lâmpada solar com sensor de movimento para segurança avançada.', 2, 4);
+VALUES ('Lâmpada Sentinela', 55.0, 'images/produtos/lampadasolar2.webp', '2024-01-01', 'Lâmpada solar com sensor de movimento para segurança avançada.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada EcoLuz', 60.0, 'images/produtos/lampadasolar3.webp', '2024-01-01', 'Lâmpada solar de alta eficiência energética para economia de energia.', 2, 5);
+VALUES ('Lâmpada Diurna', 60.0, 'images/produtos/lampadasolar3.webp', '2024-01-01', 'Lâmpada solar de alta eficiência energética para economia de energia.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada Remote', 65.0, 'images/produtos/lampadasolar4.webp', '2024-01-01', 'Lâmpada solar com controle remoto para ajuste de intensidade luminosa.', 2, 4);
+VALUES ('Lâmpada Remota', 65.0, 'images/produtos/lampadasolar4.webp', '2024-01-01', 'Lâmpada solar com controle remoto para ajuste de intensidade luminosa.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
 VALUES ('Lâmpada PowerPlus', 70.0, 'images/produtos/lampadasolar5.webp', '2024-01-01', 'Lâmpada solar com bateria recarregável para uso contínuo.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada Longlife', 75.0, 'images/produtos/lampadasolar6.webp', '2024-01-01', 'Lâmpada solar de longa duração para uso prolongado e eficiente.', 2, 4);
+VALUES ('Lâmpada VidaLonga', 75.0, 'images/produtos/lampadasolar6.webp', '2024-01-01', 'Lâmpada solar de longa duração para uso prolongado e eficiente.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Lâmpada BrightWhite', 80.0, 'images/produtos/lampadasolar7.webp', '2024-01-01', 'Lâmpada solar com luz branca para iluminação clara e vibrante.', 2, 5);
+VALUES ('Lâmpada Branca', 80.0, 'images/produtos/lampadasolar7.webp', '2024-01-01', 'Lâmpada solar com luz branca para iluminação clara e vibrante.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Relógio Pulse', 200.0, 'images/produtos/relogiosolar1.webp', '2024-01-01', 'Relógio solar de pulso com design moderno e funcionalidades avançadas.', 2, 4);
+VALUES ('Relógio de Pulso', 200.0, 'images/produtos/relogiosolar1.webp', '2024-01-01', 'Relógio solar de pulso com design moderno e funcionalidades avançadas.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('GPS Tracker', 220.0, 'images/produtos/relogiosolar2.webp', '2024-01-01', 'Relógio solar com GPS integrado para navegação precisa e monitoramento.', 2, 5);
+VALUES ('GPS Rastreador', 220.0, 'images/produtos/relogiosolar2.webp', '2024-01-01', 'Relógio solar com GPS integrado para navegação precisa e monitoramento.', 2, 5);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
-VALUES ('Relógio HeartBeat', 240.0, 'images/produtos/relogiosolar3.webp', '2024-01-01', 'Relógio solar com medidor de batimentos cardíacos para monitoramento da saúde.', 2, 4);
+VALUES ('Relógio de Batimentos', 240.0, 'images/produtos/relogiosolar3.webp', '2024-01-01', 'Relógio solar com medidor de batimentos cardíacos para monitoramento da saúde.', 2, 4);
 
 INSERT INTO TB_PRODUTOS (nome_produto, preco_produto, imagem_produto, dataCadastro_produto, descricao_produto, id_categoria_TB_CATEGORIAS, avaliacao_produto)
 VALUES ('Lâmpada com Sensor', 30.0, 'images/produtos/lampadasensor1.webp', '2024-01-01', 'Lâmpada com sensor de movimento para automação e segurança.', 2, 5);
