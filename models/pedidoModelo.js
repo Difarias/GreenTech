@@ -66,7 +66,6 @@ class PedidoModelo{
                             id_categoria: item.id_categoria_TB_CATEGORIAS
                         }))
                     };
-                    console.log(pedido);
                     resolve(pedido);
                 }
             });

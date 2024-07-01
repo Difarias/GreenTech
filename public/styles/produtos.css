@@ -198,6 +198,16 @@ header{
     color: blue;
 }
 
+.logout-menu .dropdown-content #inserir-produto:hover {
+    background-color: #f1f1f1;
+    color: rgb(41, 132, 10);
+}
+
+.logout-menu .dropdown-content #inserir-produto:hover {
+    background-color: #f1f1f1;
+    color: rgb(41, 132, 10);
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -205,8 +215,6 @@ header{
 .dropdown:hover .dropbtn {
     background-color: #0056b3;
 }
-
-
 
 .category {
     width: 100%;
@@ -256,6 +264,9 @@ main {
     font-size: 26px;
     margin-bottom: 40px;
     color: rgb(46, 133, 37);
+    border-bottom: 2px solid rgb(46, 133, 37);
+    display: inline-block; 
+    padding-bottom: 10px; 
 }
 
 .products {

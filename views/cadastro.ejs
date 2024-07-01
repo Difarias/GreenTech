@@ -243,7 +243,7 @@
           dataNascimento: document.querySelector('input[name="dataNascimento"]').value,
           endereco: {
             cep: document.querySelector('input[name="cep"]').value,
-            logradouro: document.querySelector('input[name="logradouro"]').value,
+            logradouro: `${document.querySelector('input[name="rua"]').value}, ${document.querySelector('input[name="bairro"]').value}`,
             bairro: document.querySelector('input[name="bairro"]').value,
             numero: document.querySelector('input[name="logradouro"]').value,
             cidade: document.querySelector('input[name="cidade"]').value,
