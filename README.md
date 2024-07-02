@@ -27,7 +27,6 @@ A plataforma foi criada para oferecer uma experiência de compra focada na suste
 
    ```bash
    git clone https://github.com/Difarias/GreenTech
-   cd GreenTech
 
 2. **Instale as Dependências**
    ```bash
@@ -38,10 +37,6 @@ A plataforma foi criada para oferecer uma experiência de compra focada na suste
    Após clonar o repositório e instalar as dependências, você precisará configurar as credenciais de conexão com o banco de dados. Siga estes passos:
 
    - Navegue até a pasta `infraestrutura` no diretório do seu projeto:
-
-     ```bash
-     cd infraestrutura
-     ```
 
    - Abra o arquivo `conexao.js` em um editor de texto de sua escolha.
 
