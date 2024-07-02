@@ -82,7 +82,7 @@
         <h2>Endereço</h2>
         <div class="input-group">
           <i class="fas fa-map-marker-alt"></i>
-          <input type="text" name="cep" placeholder="CEP" id="cep_cadastro" required onblur="validaCEP()">
+          <input type="text" name="cep" placeholder="CEP" id="cep_cadastro" required onblur="formatarCEP()">
         </div>
         <div class="input-group">
           <i class="fas fa-road"></i>
@@ -166,6 +166,32 @@
       }
     }
 
+    function formatarCEP() {
+      let cepInput = document.getElementById('cep_cadastro');
+      let cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+      cepInput.value = cep; // Atualiza o campo com o valor apenas numérico
+
+      if (cep.length !== 8) {
+        alert('CEP inválido.');
+        return;
+      }
+
+      fetch('https://viacep.com.br/ws/' + cep + '/json/')
+        .then(response => response.json())
+        .then(data => {
+          if (data.erro) {
+            alert('CEP não encontrado.');
+            return;
+          }
+          document.getElementById('logradouro_cadastro').value = data.logradouro;
+          document.getElementById('bairro_cadastro').value = data.bairro;
+          document.getElementById('cidade_cadastro').value = data.localidade;
+          document.getElementById('estado_cadastro').value = data.uf;
+        })
+        .catch(error => console.error('Erro ao buscar CEP:', error));
+    }
+
     function validaCPF() {
       let cpf = document.getElementById('cpf_cadastro').value.replace(/[^\d]+/g,''); 
       
@@ -202,29 +228,6 @@
       }
 
       nextSlice();
-    }
-
-    function validaCEP() {
-      let cep = document.getElementById('cep_cadastro').value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-      if (cep.length !== 8) {
-        alert('CEP inválido.');
-        return;
-      }
-
-      fetch('https://viacep.com.br/ws/' + cep + '/json/')
-        .then(response => response.json())
-        .then(data => {
-          if (data.erro) {
-            alert('CEP não encontrado.');
-            return;
-          }
-          document.getElementById('logradouro_cadastro').value = data.logradouro;
-          document.getElementById('bairro_cadastro').value = data.bairro;
-          document.getElementById('cidade_cadastro').value = data.localidade;
-          document.getElementById('estado_cadastro').value = data.uf;
-        })
-        .catch(error => console.error('Erro ao buscar CEP:', error));
     }
 
     function verificaSenhaProtegida(senha) {
@@ -284,14 +287,13 @@
       })
       
       .catch(error => {
-      console.error('Erro ao fazer cadastro', error);
+        console.error('Erro ao fazer cadastro', error);
         if (error && error.status === 409) {
             alert('Este e-mail já está em uso. Por favor, use um e-mail diferente.');
         } else {
-            alert('Erro ao fazer cadastro.Tente novamente mais tarde.');
+            alert('Erro ao fazer cadastro. Tente novamente mais tarde.');
         }
-    });
-
+      });
     }
   </script>
 </body>
